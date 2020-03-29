@@ -1,21 +1,4 @@
 # InstaStore
-Technical test for back-end developers.
- - [Instructions for developers](#instructions-for-developers)
- - [Requirements](#requirements)
- - [Improvements and trade offs](#improvements-and-trade-offs)
- 
-## Instructions for developers
- 1. Fork this repo.
- 2. Create a new branch.
- 3. Understand the requirement and the user stories.
- 4. Ask any questions to david.camargo@instaleap.io. (you have 1 chance, make it worth)
- 4. As your first commit, copy your questions and David's answers, and design the "architecture" of your service. Upload a
-    sketch/photo/readme, etc explaining how your service is going to work, and when do you think you can deliver
-    the final product (we expect you to deliver it in less than 2 days).
- 5. Have fun coding this challenge. Take into account that the data provided could have inconsistencies, make sure to handle them.
- 6. If you find blockers, keep moving and get them solved later, please write them down in a markdown file inside your repo.
- 7. Answer the [Improvements and trade offs](#improvements-and-trade-offs) section.
- 7. Create a Pull Request (in your own fork), add 'davidcp90' as a reviewer, and send an email to david.camargo@instaleap.io
 
 ## Requirements
 InstaStore is a microservice in charge of selecting the closest "convenience" store to deliver a groceries order to our B2B clients.
@@ -36,6 +19,91 @@ InstaStore is a microservice in charge of selecting the closest "convenience" st
   - nextDeliveryTime
 2. The endpoint returns the closest store available
 3. We need to keep track of each call to the endpoint
+
+## Q & A
+
+
+- What are the expected request parameters? What is the meaning of each parameter?
+
+  You should expect to receive a json object with the following parameters
+
+  ```json
+  "destination": {
+    "name": "string”, // Name of the address given by user (required)
+    "address": "string”, // Address captured (required)
+    "address_two": "string”, //Additional details for the address (line apt, house number, etc)
+    "description": "string”, //Instructions for the delivery
+    "country": "string”, // Country code according to ISO-3166-1 (required)
+    "city": "string", // City name
+    "state": "string", // State name
+    "zip_code": "string",
+    "latitude": 0, //number indicating the latitude of the address provided
+    "longitude": 0, //number indicating the longitude of the address provided
+  }
+  ```
+
+- What is nextDeliveryTime?
+
+  In this case, we are going to consider that each store can deliver 3 orders per hour, and according to that, you need to provide the next time (date+hour) in which the store can deliver an order (nextDeliveryTime).
+
+- In the API response we have 'isOpen', What is the role of this field in determining the closest available store?
+
+  Nothing. I was expecting you to catch things unneeded.
+
+- What are the locations/coordinates of the stores?
+
+  I am attaching a CSV with that information, you can discard any column that you think is not needed.
+
+- What should be the criteria for defining the closest store?
+
+  This has to be one of your implementations decisions, choose the best one according to the time given and the data provided for the challenge. Make sure to justify it, according to point 5 in the repo.
+
+##  Design and Implementation choices
+
+
+1. Convenience stores can deliver 3 orders per hour,  I'm going to assume that each store can process an order every 20 minutes.
+2. The convenience stores are open 24 hours/7 days.
+3. You have to be authenticated to consume the endpoint.
+
+
+### Criteria for defining the closest store available
+
+The closest store would be the one from which the delivery will arrive first, to achieve that, we're are going use the estimated time of arrival (ETA)  defined as the sum of the nextDeliveryTime and the duration of the shipping (shippingTime).
+
+ETA = nextDeliveryTime + shippingTime
+
+We'll select the store with the minimal ETA.
+
+### Architecture
+
+![arch](https://github.com/anmrdz/instastore/raw/dev/arch.png)
+
+### Database
+
+![db](https://github.com/anmrdz/instastore/raw/dev/db.png)
+
+### Security
+
+JWT is going to be used to protect the /store/ endpoint from unauthorized use.
+
+The endpoint /user/ will provide a way to login and obtain the token needed to use /store/.
+
+### Tracking
+
+All the calls made to the endpoints would be logged using the library [morgan](https://github.com/expressjs/morgan). In addition to logging, the orders are going to be saved in the database so in further developments we can obtain interesting metrics such as:
+
+- Busiest day periods.
+- Zones of most active users.
+
+### Deployment
+
+### Documentation
+
+### Testing
+
+### Estimated Completion Time
+
+Sunday, March 29, at 11:55 pm.
 
 ## Improvements and trade offs
 1. What would you improve from your code? why?
