@@ -1,0 +1,36 @@
+{
+  "name": "instastore",
+  "version": "1.0.0",
+  "description": "InstaStore is a microservice in charge of selecting the closest \"convenience\" store to deliver a groceries order to our B2B clients.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anmrdz/instastore.git"
+  },
+  "keywords": [
+    "delivery",
+    "distance",
+    "minimal"
+  ],
+  "author": "anmrdz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anmrdz/instastore/issues"
+  },
+  "homepage": "https://github.com/anmrdz/instastore#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.6",
+    "morgan": "^1.10.0"
+  },
+  "engines": {
+    "node": "13.x"
+  }
+}
