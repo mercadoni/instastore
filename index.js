@@ -1,21 +1,11 @@
 /**
- * Instastore REST API
+ * Start server
  */
 
-const express = require('express')
-const logger = require('morgan')
-const bodyParser = require('body-parser')
-const app = express()
-const connectDB = require('./api/config/db')
+const app = require('./app')
 const serverConfig = require('./config')
+const { connectDB } = require('./api/service/db')
 
-app.use(logger('dev'))
-app.use(bodyParser.urlencoded({ extended: false }))
+connectDB()
 
-app.get('/', function (req, res) {
-  res.json({ store: 'first' })
-})
-
-connectDB().then(async () => {
-  app.listen(serverConfig.port, function () { console.log('Node server listening on port ' + serverConfig.port) })
-})
+app.listen(serverConfig.port, () => console.log('Node server listening on port ' + serverConfig.port))
