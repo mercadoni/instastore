@@ -46,7 +46,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^4.1.4"
   },
   "engines": {
     "node": "13.x"

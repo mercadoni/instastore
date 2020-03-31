@@ -1,0 +1,269 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "InstaStore",
+    "description": "InstaStore is a microservice in charge of selecting the closest convenience store to deliver a groceries order to our B2B clients.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    },
+    {
+      "url": "http://localhost/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "store",
+      "description": "Find closest store available"
+    },
+    {
+      "name": "user",
+      "description": "Register and Authenticate to use the API"
+    }
+  ],
+  "paths": {
+    "/store/order": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order",
+        "operationId": "placeOrder",
+        "requestBody": {
+          "description": "Information about the destination of the order",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "destination": {
+                    "$ref": "#/components/schemas/Order"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Closest store available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "storeId": {
+                      "type": "string"
+                    },
+                    "storeName": {
+                      "type": "string"
+                    },
+                    "isOpen": {
+                      "type": "boolean"
+                    },
+                    "coordinates": {
+                      "$ref": "#/components/schemas/Coordinates"
+                    },
+                    "nextDeliveryTime": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid destination",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/user/register": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Register a new user",
+        "operationId": "registerUser",
+        "requestBody": {
+          "required": true,
+          "description": "User info to register",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "password2": {
+                    "type": "string",
+                    "description": "Re-enter password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token for the new user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Passwords don't match",
+            "content": {}
+          },
+          "409": {
+            "description": "User is already registered",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Login user",
+        "operationId": "loginUser",
+        "requestBody": {
+          "required": true,
+          "description": "User info to register",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "New user token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid login credentials",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Token": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        },
+        "description": "JWT token"
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the address given by user"
+          },
+          "address": {
+            "type": "string",
+            "description": "Address captured "
+          },
+          "address2": {
+            "type": "string",
+            "description": "Additional details for the address (line apt, house number, etc) "
+          },
+          "description": {
+            "type": "string",
+            "description": "Instructions for the delivery "
+          },
+          "city": {
+            "type": "string",
+            "description": "City name"
+          },
+          "state": {
+            "type": "string",
+            "description": "State name"
+          },
+          "zip_code": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "number indicating the latitude of the address provided",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "number indicating the longitude of the address provided",
+            "format": "float"
+          }
+        }
+      },
+      "Coordinates": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "description": "number indicating the latitude of the address",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "number indicating the longitude of the address",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

@@ -37,7 +37,7 @@ describe('User endpoint', () => {
 
   it('should allow login of registered users', async () => {
     const res = await request(app)
-      .get('/user/login')
+      .post('/user/login')
       .send({
         username: testUser.username,
         password: testUser.password,
@@ -48,7 +48,7 @@ describe('User endpoint', () => {
 
   it('does not allow login of unregistered users', async () => {
     const res = await request(app)
-      .get('/user/login')
+      .post('/user/login')
       .send({
         username: 'sdfsdf',
         password: 'sdfsdfsdf',
