@@ -2,7 +2,7 @@
  * Test module for User Model
  */
 
-const { connectDB, closeTestDB } = require('../../service/db')
+const { connectDB, closeTestDB, removeAllCollections } = require('../../service/db')
 const User = require('../user')
 
 beforeAll(async () => await connectDB())
@@ -42,5 +42,6 @@ describe('User', () => {
 })
 
 afterAll(async () => {
+  await removeAllCollections()
   await closeTestDB()
 })

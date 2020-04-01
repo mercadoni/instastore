@@ -38,14 +38,57 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "destination": {
-                    "$ref": "#/components/schemas/Order"
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the address given by user"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Address captured "
+                  },
+                  "address_two": {
+                    "type": "string",
+                    "description": "Additional details for the address (line apt, house number, etc) "
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Instructions for the delivery "
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "Country name"
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "City name"
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "State name"
+                  },
+                  "zip_code": {
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "description": "number indicating the latitude of the address provided",
+                    "format": "double"
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "number indicating the longitude of the address provided",
+                    "format": "double"
                   }
-                }
+                },
+                "required": [
+                  "name",
+                  "address",
+                  "city",
+                  "country"
+                ]
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -219,6 +262,10 @@
             "type": "string",
             "description": "Instructions for the delivery "
           },
+          "country": {
+            "type": "string",
+            "description": "Country name"
+          },
           "city": {
             "type": "string",
             "description": "City name"
@@ -233,12 +280,12 @@
           "latitude": {
             "type": "number",
             "description": "number indicating the latitude of the address provided",
-            "format": "float"
+            "format": "double"
           },
           "longitude": {
             "type": "number",
             "description": "number indicating the longitude of the address provided",
-            "format": "float"
+            "format": "double"
           }
         }
       },
@@ -248,12 +295,12 @@
           "latitude": {
             "type": "number",
             "description": "number indicating the latitude of the address",
-            "format": "float"
+            "format": "double"
           },
           "longitude": {
             "type": "number",
             "description": "number indicating the longitude of the address",
-            "format": "float"
+            "format": "double"
           }
         }
       }

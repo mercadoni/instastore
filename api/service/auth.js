@@ -13,16 +13,16 @@ const verifyToken = async (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(' ')[1]
 
-    jwt.verify(token, secret, (err, payload) => {
-      if (err) {
-        return res.status(403)
-      }
-
+    try {
+      const payload = jwt.verify(token, secret)
       req.user = payload.id
+
       next()
-    })
+    } catch (error) {
+      return res.status(403).send('Invalid token')
+    }
   } else {
-    return res.status(401)
+    return res.status(401).send('Bearer token missing')
   }
 }
 
