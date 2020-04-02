@@ -4,10 +4,11 @@
 
 const mongoose = require('mongoose')
 const serverConfig = require('../../config')
-
+const { stores } = require('../../seed_db')
+const Store = require('../model/store')
 const mongoDB = serverConfig.mongoURL
 
-const connectDB = async (name) => {
+const connectDB = async () => {
   try {
     await mongoose.connect(mongoDB, {
       useNewUrlParser: true,
@@ -19,24 +20,35 @@ const connectDB = async (name) => {
   }
 }
 
-const closeTestDB = async () => {
-  await mongoose.connection.dropDatabase()
+const disconnectDB = async () => {
   await mongoose.connection.close()
 }
 
-/**
- * Clean database between tests
- */
-const removeAllCollections = async () => {
-  const collections = Object.keys(mongoose.connection.collections)
-  for (const collectionName of collections) {
-    const collection = mongoose.connection.collections[collectionName]
-    await collection.deleteMany()
+const closeTestDB = async () => {
+  await mongoose.connection.dropDatabase()
+  await disconnectDB()
+}
+
+const fillDB = async () => {
+  try {
+    await Store.insertMany(stores)
+  } catch (error) {
+    console.log(error)
   }
+}
+
+/**
+ * Clean collection between tests
+ */
+const removeAllFromCollection = async (name) => {
+  const collection = mongoose.connection.collections[name]
+  await collection.deleteMany()
 }
 
 module.exports = {
   connectDB,
   closeTestDB,
-  removeAllCollections,
+  removeAllFromCollection,
+  disconnectDB,
+  fillDB,
 }

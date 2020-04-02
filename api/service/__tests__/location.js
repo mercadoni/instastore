@@ -21,14 +21,18 @@ describe('location service', () => {
   })
 
   it('should return the duration of a shipping', async () => {
-    var duration = await locationService.getShippingDuration(testAddress, testAddress)
-
-    expect(duration).toEqual(0)
-
-    duration = await locationService.getShippingDuration(
+    var duration = await locationService.getShippingDuration(
       testAddress,
       { longitude: -74.0760439, latitude: 4.59808 }) // Bogota coordinates
 
     expect(duration).toBeGreaterThan(100)
+  })
+
+  it('should return the duration of a shipping in ms', async () => {
+    var duration = await locationService.calculateShippingDuration(
+      testAddress,
+      { longitude: -74.0760439, latitude: 4.59808 }) // Bogota coordinates
+
+    expect(duration).toBeCloseTo(292842080, 1)
   })
 })

@@ -7,7 +7,9 @@
     "start": "node index.js",
     "pretest": "eslint api",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --collectCoverage",
-    "ci:test": "npm run test -- --ci --runInBand"
+    "ci:test": "npm run test -- --ci --runInBand",
+    "seed": "node -e \"require('./seed_db').seed()\"",
+    "seed:local": "NODE_ENV=test node -e \"require('./seed_db').seed()\""
   },
   "jest": {
     "testEnvironment": "node",
@@ -45,6 +47,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-openapi-validator": "^3.10.0",
+    "geolib": "^3.2.1",
     "got": "^10.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",

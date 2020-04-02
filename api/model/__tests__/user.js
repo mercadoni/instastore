@@ -2,10 +2,13 @@
  * Test module for User Model
  */
 
-const { connectDB, closeTestDB, removeAllCollections } = require('../../service/db')
+const { connectDB, closeTestDB, removeAllFromCollection } = require('../../service/db')
 const User = require('../user')
 
-beforeAll(async () => await connectDB())
+beforeAll(async () => {
+  await connectDB()
+  await removeAllFromCollection('users')
+})
 
 const credentials = { username: 'test', password: 'pa$$w0rd' }
 
@@ -42,6 +45,5 @@ describe('User', () => {
 })
 
 afterAll(async () => {
-  await removeAllCollections()
   await closeTestDB()
 })

@@ -2,11 +2,14 @@
  * Test module for user endpoint
  */
 
-const { connectDB, closeTestDB } = require('../../service/db')
+const { connectDB, closeTestDB, removeAllFromCollection } = require('../../service/db')
 const request = require('supertest')
 const app = require('../../../app')
 
-beforeAll(async () => await connectDB())
+beforeAll(async () => {
+  await connectDB()
+  await removeAllFromCollection('users')
+})
 
 const testUser = { username: 'test', password: 'pa$$w0rd' }
 
