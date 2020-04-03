@@ -7,10 +7,10 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/"
+      "url": "https://tranquil-atoll-58683.herokuapp.com/"
     },
     {
-      "url": "http://localhost/"
+      "url": "http://localhost:3000/"
     }
   ],
   "tags": [

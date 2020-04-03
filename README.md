@@ -97,9 +97,69 @@ All the calls made to the endpoints would be logged using the library [morgan](h
 
 ### Deployment
 
+The API is deployed using heroku [link](https://tranquil-atoll-58683.herokuapp.com/)
+
+To deploy locally with env params set(api keys, etc..):
+
+1. Clone this repository
+2. npm run seed
+3. npm start
+
+To deploy locally with the test env (assumes mongodb is running at localhost, geodecoding will not work if you don't set the api key):
+
+1. Clone this repository
+2. npm run seed:local
+3. NODE_ENV=test npm start
+
 ### Documentation
 
+The API documentation was developed following the OpenAPI Specification v3 and can be browsed [here](https://tranquil-atoll-58683.herokuapp.com/)
+
 ### Testing
+
+The API has unit tests, linting and code coverage of at least 93%. For live testing use the 'try it out' button in [here](https://tranquil-atoll-58683.herokuapp.com/) or the following scripts:
+
+#### Register
+
+```curl
+curl --location --request POST 'https://tranquil-atoll-58683.herokuapp.com/user/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"username" : "<username>",
+	"password": "<password>",
+	"password2": "<password>"
+}'
+```
+
+#### Login
+
+```curl
+curl --location --request POST 'https://tranquil-atoll-58683.herokuapp.com/user/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"username" : "<username>",
+	"password": "<password>"
+}'
+```
+
+#### get closest store available
+```curl
+curl --location --request POST 'https://tranquil-atoll-58683.herokuapp.com/store/order' \
+--header 'Authorization: Bearer <AUTH_TOKEN>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "Casa",
+  "address": "Gustavo A. Madero Oriente 223",
+  "address_two": "apt 205",
+  "description": "knock 3 times",
+  "country": "México",
+  "city": "Monterrey",
+  "state": "N.L.",
+  "zip_code": "64570",
+  "latitude": 25.691053,
+  "longitude": -100.310530
+}'
+```
 
 ### Estimated Completion Time
 
