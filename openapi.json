@@ -80,6 +80,18 @@
                     "format": "double"
                   }
                 },
+                "example": {
+                  "name": "Casa",
+                  "address": "Gustavo A. Madero Oriente 223",
+                  "address_two": "apt 205",
+                  "description": "knock 3 times",
+                  "country": "México",
+                  "city": "Monterrey",
+                  "state": "N.L.",
+                  "zip_code": "64570",
+                  "latitude": 25.691053,
+                  "longitude": -100.31053
+                },
                 "required": [
                   "name",
                   "address",

@@ -15,7 +15,7 @@ const findClosest = async (req, res) => {
       destination = await LocationService.geocoding(destination)
     }
 
-    for await (const origin of Store.findOne()) {
+    for await (const origin of Store.find()) {
       const shippingTime = await LocationService.calculateShippingDuration(origin, destination)
 
       if (!origin.nextDeliveryTime || origin.nextDeliveryTime < Date.now()) {
