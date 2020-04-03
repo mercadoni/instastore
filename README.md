@@ -1,4 +1,4 @@
-# InstaStore
+# InstaStore  [![InstaStore](https://circleci.com/gh/anmrdz/instastore/tree/dev.svg?style=svg)](https://circleci.com/gh/anmrdz/instastore/tree/dev)
 
 ## Requirements
 InstaStore is a microservice in charge of selecting the closest "convenience" store to deliver a groceries order to our B2B clients.
@@ -97,7 +97,7 @@ All the calls made to the endpoints would be logged using the library [morgan](h
 
 ### Deployment
 
-The API is deployed using heroku [link](https://tranquil-atoll-58683.herokuapp.com/)
+The API is deployed using heroku [link](https://tranquil-atoll-58683.herokuapp.com/) and  continuos integration CircleCI.
 
 To deploy locally with env params set(api keys, etc..):
 
@@ -167,6 +167,21 @@ Sunday, March 29, at 11:55 pm.
 
 ## Improvements and trade offs
 1. What would you improve from your code? why?
-2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+
+   - I would add a better error handler because it seems fragile to errors between middlewares.
+   - I would rely on a third-party library to seed the database because my code might be sensitive to unhandled promise errors.
+   - I'm not sure the translation/implementation used of the data model was the best for MongoDB.
+
+2. Which trade-offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+
+  - I should have restricted my research time, I tried to implement best practices wherever possible but this took a lot of time.
+  - Next time I'm going to make sure third-party services fit my needs first. I used a third-party library for geocoding and distance matrix calculation but too late I found out that free tier restrictions were too severe that for the demo, it wouldn't work. I lost time implementing it but kept the geocoding and used distance calculation as a fallback for the other function.
+  - I would take more advantage of the OpenAPI Specification tools available to leverage and speed up the development process.
+
 3. Do you think your service is secure? why?
-4. What would you do to measure the behaviour of your product on a production environment?
+
+   Yes, it has a basic authentication and authorization protocol with more time it can be improved by adding Helmet, expiring tokens, etc..
+
+4. What would you do to measure the behavior of your product in a production environment?
+
+   I would use the logs and the track Order functionality to extract insightful metrics
