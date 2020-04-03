@@ -2,6 +2,7 @@
  * Module to process store orders
  */
 const Store = require('../model/store')
+const Order = require('../model/order')
 const LocationService = require('../service/location')
 
 const findClosest = async (req, res) => {
@@ -9,7 +10,7 @@ const findClosest = async (req, res) => {
     var destination = req.body
     var minETA = Number.MAX_VALUE
     var closestStore = null
-
+    // if the destination does not have coordinates, we use geocoding to find them
     if (!('longitude' in destination && 'latitude' in destination)) {
       destination = await LocationService.geocoding(destination)
     }
@@ -31,7 +32,13 @@ const findClosest = async (req, res) => {
 
     closestStore.nextDeliveryTime = new Date(closestStore.nextDeliveryTime.getTime() + (20 * 60 * 1000))
 
+    // Update order with the closest store
+    const ord = await Order.findOne({ _id: req.order })
+    ord.store = closestStore._id
+    ord.nextDeliveryTime = closestStore.nextDeliveryTime
+
     await closestStore.save()
+    await ord.save()
 
     return res.status(200).json({
       storeId: closestStore.code,

@@ -35,12 +35,8 @@ const login = async (req, res) => {
 
   try {
     const user = await User.findByCredentials(username, password)
-
-    if (!user) {
-      return res.status(401).json('Invalid login credentials')
-    }
-
     const token = AuthService.issue({ id: user.id })
+
     return res.status(200).json({ token })
   } catch (error) {
     return res.status(401).json(error.message)

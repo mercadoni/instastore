@@ -2,16 +2,18 @@
  * Test module for store endpoint
  */
 
-const { connectDB, closeTestDB, fillDB } = require('../../service/db')
+const dbService = require('../../service/db')
 const request = require('supertest')
 const app = require('../../../app')
 const jwt = require('jsonwebtoken')
+const Order = require('../../model/order')
 
 jest.mock('jsonwebtoken')
 
 beforeAll(async () => {
-  await connectDB()
-  await fillDB()
+  await dbService.connectDB()
+  await dbService.removeAllFromCollection('orders')
+  await dbService.fillDB()
 })
 
 const destination = {
@@ -72,6 +74,14 @@ describe('Store endpoint', () => {
   })
 })
 
+describe('Order track', () => {
+  it('has 2 entries for the last set of valid calls to the store endpoint', async () => {
+    const entries = await Order.countDocuments()
+
+    expect(entries).toEqual(2)
+  })
+})
+
 afterAll(async () => {
-  await closeTestDB()
+  await dbService.closeTestDB()
 })
