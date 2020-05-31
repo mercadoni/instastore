@@ -7,6 +7,7 @@ const logger = new Logger('app')
 
 async function startServer() {
   const app = express();
+  await apiConfig.initialize(app)
   app.listen(config.port, err => {
     if (err) {
       process.exit(1);

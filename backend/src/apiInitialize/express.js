@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const routes = require('../api');
 const config = require('../config');
 const compression = require('compression');
 const Logger = require('../service/loggerService')
@@ -14,18 +15,8 @@ exports.initialize = (app) => {
   app.enable('trust proxy');
 
   // Enabled Cross-domain request
-  const whitelist = ['https://instastore-cc392.web.app']
-  const corsOptions = {
-    origin: function (origin, callback) {
-      logger.error("intento de acceder al API de:" + origin)
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    }
-  }
-  app.use(cors(corsOptions));
+ 
+  app.use(cors());
 
   //Transforms the raw string of req.body into json
   app.use(bodyParser.json());
