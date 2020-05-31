@@ -1,0 +1,51 @@
+.App {
+    .signin {
+        z-index: 2;
+        top: 0;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        
+        .logo {
+            color: $burnt-sienna;
+            font-family: "Days One";
+            text-align: center;
+            letter-spacing: 0;
+            .icon {
+                font-size: 1.5em;
+            }
+        }
+        .bg {
+            transition: opacity 1s ease;
+            background-color: $cultured;
+            opacity: 0.8
+        }
+        .bg.fade{
+            opacity: 0
+        }
+        .form-sign.fade{
+            opacity: 0;
+        }
+        .form-sign {
+            transition: opacity 0.4s ease;
+            width: 100%;
+            max-width: 650px;
+            padding: 2em;
+            margin: auto;
+
+            input {
+                padding: 20px !important;
+                border-width: 2px;
+                color: $persian-indigo;
+                font-size: 0.8em;
+            }
+            label {
+                color: $cultured;
+                font-size: 1em;
+            }
+        }
+    }
+}
