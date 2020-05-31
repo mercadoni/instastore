@@ -1,0 +1,9 @@
+.searchbar{
+    margin-top :0px;
+    transition: margin 0.5s ease;
+}
+
+.searchbar.show{
+    margin-top: 70px;
+    z-index: 6;
+}
