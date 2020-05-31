@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
-
+import { CoordDinatesTransformer } from "../transformers/coordTransformer";
 @Entity()
 export class Store {
   @PrimaryGeneratedColumn("uuid")
@@ -17,18 +17,37 @@ export class Store {
   @Column({ default: true })
   is_open?: boolean;
 
-  @Column()
-  lattitude: string;
+  @Column("numeric", {
+    precision: 8,
+    scale: 3,
+    nullable: false,
+    transformer: new CoordDinatesTransformer(),
+  })
+  public latitude: number;
+
+  @Column("numeric", {
+    precision: 8,
+    scale: 3,
+    nullable: false,
+    transformer: new CoordDinatesTransformer(),
+  })
+  public longitude: number;
 
   @Column()
-  longitude: string;
+  address: string;
 
-  @Column({ nullable: true })
-  city?: string;
+  @Column()
+  city: string;
 
-  @CreateDateColumn()
+  @Column()
+  state: string;
+
+  @Column()
+  country: string;
+
+  @CreateDateColumn({ default: new Date() })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ default: new Date() })
   updated_at: Date;
 }

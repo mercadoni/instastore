@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/src/index.js",
-    "test": "test"
+    "start": "ts-node src/index.ts",
+    "test": "test",
+    "seed:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -c seed -n ",
+    "seed:run": "ts-node ./node_modules/typeorm/cli.js migration:run -c seed"
   },
   "author": "Cristian Cordoba",
   "license": "ISC",
@@ -17,7 +19,10 @@
     "express": "^4.17.1",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.25",
+    "typeorm": "^0.2.25"
+  },
+  "devDependencies": {
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.3"
   }
 }
