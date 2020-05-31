@@ -44,29 +44,30 @@ InstaStore is a microservice in charge of selecting the closest "convenience" st
 3. It should manage errors and unexpected requests. Users should always know what to do.
 4. App should include a top bar with a logo (go nuts)
 5. The app should be served through a CDN
-## Improvements and trade offs
-1. What would you improve from your code? why?
-2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
-3. Do you think your service is secure? why?
-4. What would you do to measure the behaviour of your product on a production environment?
 
 ## Questions and Answers
 -Can I use any database to develop the test?
+
 Yes
 
 -Is there any source to take stores' data?
+
 Yes, I attached a seed file to this mail
 
 -What is the parameter that determines what is a nearby store?
+
 There are only 2 possibilities, distance or time. Choose one, take into account the time to develop the test and that anyone is valid for the scope of this test.
 
 -What exactly is the nextDeliveryTime?
+
 According to the location of the user plus the availability (store is open) , you should calculate the next range of time (8:00-900am for example) to deliver an order.
 
 -To capture the address, what data is required?
+
 Is part of what you need to define.
 
 -What should be sent to the endpoint as input?
+
 Is part of what you need to define. Hint: Point 1 and 2 on the section “For full-stack developers” in the functional requirements.
 
 ## Architecture
@@ -87,13 +88,38 @@ https://github.com/danielrdnz/instastore/raw/development/instastore-wireframe.pn
 
 For geolocation, user and stores, in addition to capturing the user's address, various Google APIS will be used
 
-Distance Matrix API
-Geocoding API
-Maps JavaScript API
-Place Autocomplete
+-Distance Matrix API
+-Geocoding API
+-Maps JavaScript API
+-Place Autocomplete
 
 ### Track
 
 winston.js will be used to trace each call to the endpoint
 
 the expected delivery date is 31/05/20 at 12:00 am
+
+## Improvements and trade offs
+1. What would you improve from your code? why?
+
+-React is not my header framework, so I find that I should check the communication between components, in my opinion it is a bit hacky
+- would add more documentation and comments on the interface and include token validation in the backend
+
+2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+
+-I would not use the google API, it is slow in many occasions, like firebase (firestore) on the other hand I feel that I am faster with Vue.js, so i would use vue
+
+3. Do you think your service is secure? why?
+
+-The only security that was applied is a white list rule for the frontend domain (https://instastore-cc392.web.app/)
+
+4. What would you do to measure the behaviour of your product on a production environment?
+
+-on the backend the request calling trace is a good tool for verify the performance of the application, and so what was the input and what was the output, it would be good idea use a tool like Express Status Monitor
+
+## CDN
+The backend is server on Heroku on this url: https://hidden-hollows-24621.herokuapp.com
+The frontend is Hosting on Firebase on this url: https://instastore-cc392.web.app
+
+
+
