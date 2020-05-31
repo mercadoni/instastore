@@ -1,0 +1,20 @@
+.header {
+    z-index: 3;
+    .navbar {
+        background-color: $persian-indigo;
+        .logo {
+            color: $cultured;
+            font-family: "Days One";
+            text-align: center;
+            letter-spacing: 0;
+            color: $burnt-sienna;
+            .icon {
+                font-size: 1.2em;
+            }
+        }
+        .cart:hover {
+            opacity: 0.8;
+            margin-bottom: 0.2em;
+        }
+    }
+}

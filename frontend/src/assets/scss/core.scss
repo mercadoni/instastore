@@ -1,0 +1,49 @@
+#root {
+    
+    height: 100%;
+    font-family: "Roboto";
+
+    .btn-pacific-blue{
+        background-color: $pacific-blue !important;
+    }
+    .btn-pacific-blue:hover{
+        opacity: 0.9;
+    }
+    .btn-persian-indigo{
+        background-color: $persian-indigo !important;
+        padding: 0.5em;
+    }
+    .bg-cultured{
+        background-color: $cultured !important;
+    }
+    .bg-persian-indigo{
+        background-color: $persian-indigo !important;
+    }
+    .color-cultured{
+        color: $cultured !important;
+    }
+    .color-pacific-blue{
+        color: $pacific-blue !important;
+    }
+    .colo-pacific-blue-dark{
+        color: $pacific-blue-dark !important;
+    }
+    .color-persian-indigo{
+        color: $persian-indigo !important;
+    }
+    .t-0{
+        top:0;
+    }
+    .r-0{
+        right: 0;
+    }
+    .l-150{
+        left: 150%;
+    }
+    .l-50{
+        left: 50%;
+    }
+}
+html, body{
+    height: 100%;
+}
