@@ -1,0 +1,15 @@
+.sidecar-left{
+    width: 40%;
+    transition: left 0.5s ease;
+    z-index: 6;
+    .body{
+        border-radius: 5px;
+        .user{
+            font-size: 5em;
+            color: $persian-indigo;
+        }
+    }
+    .card{
+        margin-top: 70px;
+    }
+}
