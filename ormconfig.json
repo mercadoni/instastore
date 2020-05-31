@@ -1,0 +1,17 @@
+{
+  "name": "default",
+  "type": "postgres",
+  "port": 5432,
+  "synchronize": false,
+  "migrationsRun": true,
+  "logging": true,
+  "host": "0.0.0.0",
+  "username": "postgres",
+  "database": "instastore",
+  "password": "postgres",
+  "entities": ["dist/entities/*.js"],
+  "migrations": ["dist/migrations/*.js"],
+  "cli": {
+    "migrationsDir": "src/migrations"
+  }
+}
