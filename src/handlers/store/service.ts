@@ -2,10 +2,10 @@ import { ICityPoint } from "../../shared/types";
 
 export const getHaversineDistance = (cityA: ICityPoint, cityB: ICityPoint) => {
   var R = 3958.8; // Radius of the Earth in miles
-  var rlat1 = cityA.lat * (Math.PI / 180); // Convert degrees to radians
-  var rlat2 = cityB.lat * (Math.PI / 180); // Convert degrees to radians
+  var rlat1 = cityA.latitude * (Math.PI / 180); // Convert degrees to radians
+  var rlat2 = cityB.latitude * (Math.PI / 180); // Convert degrees to radians
   var difflat = rlat2 - rlat1; // Radian difference (latitudes)
-  var difflon = (cityB.lng - cityA.lng) * (Math.PI / 180); // Radian difference (longitudes)
+  var difflon = (cityB.longitude - cityA.longitude) * (Math.PI / 180); // Radian difference (longitudes)
   var d =
     2 *
     R *

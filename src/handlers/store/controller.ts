@@ -52,8 +52,8 @@ export const getNearestStore = async (request: Request, response: Response) => {
       );
       let userCoords: ICityPoint = {
         city: destination.city,
-        lat: destination.latitude,
-        lng: destination.longitude,
+        latitude: destination.latitude,
+        longitude: destination.longitude,
       };
 
       console.log("cities retived", citiesCoords);
@@ -78,11 +78,23 @@ export const getNearestStore = async (request: Request, response: Response) => {
           ? true
           : false;
       });
-
-      console.log("filtered Stores", stores);
     }
 
-    response.json(stores);
+    const sortedByCoords: any = stores
+      .map((coord) => {
+        let { city, latitude, longitude } = coord;
+        const distance = getHaversineDistance(
+          ({ city, latitude, longitude } = destination),
+          ({ city, latitude, longitude } = coord)
+        );
+        return {
+          ...coord,
+          distance,
+        };
+      })
+      .sort((a, b) => (a.distance | 0) - (b.distance | 0));
+
+    response.json(sortedByCoords);
 
     return stores;
   } catch (error) {

@@ -14,10 +14,7 @@ export const getCitiesCoordinates = async (
 ) => {
   let citieCoords: Array<ICityPoint> = [];
 
-  console.log("keys", cities);
   for await (let city of cities) {
-    console.log("ind", city);
-
     await client
       .geocode({
         params: {
@@ -27,14 +24,13 @@ export const getCitiesCoordinates = async (
         timeout: 2000,
       })
       .then((response: GeocodeResponse) => {
-        console.log("res from goog", response);
         if (response.data.status === Status.OK) {
           console.log(response.data.results[0]);
           const { lat, lng } = response.data.results[0].geometry.location;
           citieCoords.push({
             city,
-            lat,
-            lng,
+            latitude: lat,
+            longitude: lng,
           });
         } else {
           console.error(

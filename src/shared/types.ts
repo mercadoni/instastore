@@ -19,7 +19,7 @@ export interface IDestination {
 
 export interface ICityPoint {
   city: string;
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
   distance?: number;
 }
