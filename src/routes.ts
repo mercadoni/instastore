@@ -1,4 +1,8 @@
-import { getAllStores } from "./handlers/store/controller";
+import {
+  getAllStores,
+  getStoresByCity,
+  getNearestStore,
+} from "./handlers/store/controller";
 import { Route } from "./shared/types";
 
 /**
@@ -9,5 +13,15 @@ export const AppRoutes: Route[] = [
     path: "/stores",
     method: "get",
     action: getAllStores,
+  },
+  {
+    path: "/stores/city/:city",
+    method: "get",
+    action: getStoresByCity,
+  },
+  {
+    path: "/stores/nearest",
+    method: "post",
+    action: getNearestStore,
   },
 ];
