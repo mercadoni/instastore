@@ -6,12 +6,15 @@ module.exports = [
     synchronize: false,
     migrationsRun: true,
     logging: true,
-    host: process.env.DB_DEV_HOST, //`/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`,
+    host: process.env.DATABASE_URL, //`/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`,
     username: process.env.DB_USER,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASS,
     entities: ["src/entities/*{.js,.ts}"],
     migrations: ["src/migrations/*{.js,.ts}"],
+    extra: {
+      ssl: true,
+    },
     cli: {
       migrationsDir: "src/migrations",
     },
@@ -27,6 +30,9 @@ module.exports = [
     username: "postgres",
     database: "instastore",
     password: "postgres",
+    extra: {
+      ssl: true,
+    },
     entities: ["src/entities/*{.js,.ts}"],
     migrations: ["src/seeds/*{.js,.ts}"],
     cli: {
