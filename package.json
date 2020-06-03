@@ -7,7 +7,10 @@
     "start": "ts-node src/index.ts",
     "test": "test",
     "seed:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -c seed -n ",
-    "seed:run": "ts-node ./node_modules/typeorm/cli.js migration:run -c seed"
+    "seed:run": "ts-node ./node_modules/typeorm/cli.js migration:run -c seed",
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n",
+    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create -n",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
   },
   "author": "Cristian Cordoba",
   "license": "ISC",
@@ -15,11 +18,13 @@
     "@googlemaps/google-maps-services-js": "^2.6.1",
     "@types/express": "^4.17.6",
     "@types/node": "^14.0.5",
+    "@types/swagger-ui-express": "^4.1.2",
     "body-parser": "^1.19.0",
     "core-util-is": "^1.0.2",
     "express": "^4.17.1",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
+    "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.25"
   },
   "devDependencies": {

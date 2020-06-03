@@ -4,16 +4,15 @@ import { Response, Request } from "express";
 import { IDestination, ICityPoint } from "../../shared/types";
 import { getCitiesCoordinates } from "../../services/mapsClient";
 import { getHaversineDistance } from "./service";
+import { Store } from "../../entities/Store";
 
 export const getAllStores = async (request: Request, response: Response) => {
   const dbManager = getManager();
   try {
     const stores = await getStores(dbManager);
-    response.status(200).json(stores);
 
     return stores;
   } catch (error) {
-    response.status(400).json(error);
     throw `There was an error getting the stores: ${error}`;
   }
 };
@@ -23,11 +22,9 @@ export const getStoresByCity = async (request: Request, response: Response) => {
   try {
     const destination: IDestination = request.body.destination;
     const stores = await findStoresInCity(dbManager, destination.city);
-    response.status(200).json(stores);
 
     return stores;
   } catch (error) {
-    response.status(400).json(error);
     throw `There was an error getting the stores: ${error}`;
   }
 };
@@ -40,6 +37,9 @@ export const getNearestStore = async (request: Request, response: Response) => {
 
     if (stores.length === 0) {
       const stateStores = await findStoresInstate(dbManager, destination.state);
+      if (stateStores.length === 0) {
+        return [];
+      }
       const citiesUnderState = new Set<string>();
 
       stateStores.forEach((store) => citiesUnderState.add(store.city));
@@ -80,7 +80,7 @@ export const getNearestStore = async (request: Request, response: Response) => {
       });
     }
 
-    const sortedByCoords: any = stores
+    const sortedByCoords: Partial<Store[]> = stores
       .map((coord) => {
         let { city, latitude, longitude } = coord;
         const distance = getHaversineDistance(
@@ -94,9 +94,7 @@ export const getNearestStore = async (request: Request, response: Response) => {
       })
       .sort((a, b) => (a.distance | 0) - (b.distance | 0));
 
-    response.json(sortedByCoords);
-
-    return stores;
+    return [sortedByCoords[0]] || [];
   } catch (error) {
     throw `There was an error getting the stores: ${error}`;
   }
