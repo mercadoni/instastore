@@ -5,7 +5,7 @@ import {
 } from "@googlemaps/google-maps-services-js";
 import { ICityPoint } from "../shared/types";
 
-const API_KEY = "AIzaSyAJp1JumsmnVpapbc2zM_gJdiMyPDnkVhY";
+const API_KEY = process.env.MAPS_API_KEY as string;
 
 const client = new Client({});
 

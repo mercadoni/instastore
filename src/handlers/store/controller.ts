@@ -20,8 +20,7 @@ export const getAllStores = async (request: Request, response: Response) => {
 export const getStoresByCity = async (request: Request, response: Response) => {
   const dbManager = getManager();
   try {
-    const destination: IDestination = request.body.destination;
-    const stores = await findStoresInCity(dbManager, destination.city);
+    const stores = await findStoresInCity(dbManager, request.params.city);
 
     return stores;
   } catch (error) {
