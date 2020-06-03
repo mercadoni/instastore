@@ -18,7 +18,7 @@ export const getCitiesCoordinates = async (
     await client
       .geocode({
         params: {
-          key: API_KEY,
+          key: process.env.MAPS_API_KEY as string,
           address: city,
         },
         timeout: 2000,
