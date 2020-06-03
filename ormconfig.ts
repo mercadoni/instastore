@@ -18,6 +18,9 @@ module.exports = [
       ssl: true,
       rejectUnauthorized: false,
     },
+    define: {
+      timestamps: false,
+    },
     cli: {
       migrationsDir: "src/migrations",
     },
