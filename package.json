@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node ./src/index.ts",
     "test": "test",
     "seed:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -c seed -n ",
     "seed:run": "ts-node ./node_modules/typeorm/cli.js migration:run -c seed",
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n",
     "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create -n",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "web": "ts-node ./src/index.ts"
   },
   "author": "Cristian Cordoba",
   "license": "ISC",
@@ -26,10 +27,9 @@
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.25",
-    "winston": "^3.2.1"
-  },
-  "devDependencies": {
+    "winston": "^3.2.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.3"
-  }
+  },
+  "devDependencies": {}
 }
