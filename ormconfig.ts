@@ -14,9 +14,7 @@ module.exports = [
     entities: ["src/entities/*{.js,.ts}"],
     migrations: ["src/migrations/*{.js,.ts}"],
     // ssl: true,
-    ssl: {
-      rejectUnauthorized: true,
-    },
+    ssl: true,
     define: {
       timestamps: false,
     },
