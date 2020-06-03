@@ -13,10 +13,9 @@ module.exports = [
     // password: process.env.DB_PASS,
     entities: ["src/entities/*{.js,.ts}"],
     migrations: ["src/migrations/*{.js,.ts}"],
-    ssl: true,
-    extra: {
-      ssl: true,
-      rejectUnauthorized: false,
+    // ssl: true,
+    ssl: {
+      rejectUnauthorized: true,
     },
     define: {
       timestamps: false,
