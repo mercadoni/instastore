@@ -7,7 +7,7 @@ import * as bodyParser from "body-parser";
 import { AppRoutes } from "./routes";
 import { Route } from "./shared/types";
 import { swaggerDocument } from "./swagger/swaggerDocument";
-
+import { logger } from "./shared/logger";
 createConnection()
   .then(async (connection) => {
     const app = express();
@@ -31,6 +31,16 @@ createConnection()
             .action(request, response)
             .then((data: any): any => {
               console.log("returning data", data);
+              logger.log({
+                level: "info",
+                message: "resource acceced",
+                type: route.method,
+                path: route.path,
+                header: request.header,
+                params: request.params,
+                data: request.body,
+                response: data,
+              });
               response.status(200).json({
                 results: data,
                 info: "none",
@@ -39,7 +49,18 @@ createConnection()
               return;
             })
             .then(() => next)
-            .catch((err: any) => next(err));
+            .catch((err: any) => {
+              logger.log({
+                level: "error",
+                message: "error ocoured",
+                error: err,
+                path: route.path,
+                header: request.header,
+                params: request.params,
+                data: request.body,
+              });
+              next(err);
+            });
         }
       );
     });
