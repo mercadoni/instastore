@@ -44,11 +44,11 @@ npm start
 InstaStore is a microservice in charge of selecting the closest "convenience" store to deliver a groceries order to our B2B clients.
 
 ### Non-functional
-- We expect you to deliver idiomatic code in a way that is easy to read and follows the accepted guidelines in your area of expertise.
-- You should write it on Node.js with Express.js. Libraries, transpilers , etc are up to you.
+- If you are applying for a fullstack position, front-end must be build with React.
 - Endpoints are fast (less than 300ms).
 - Endpoints respond error codes that makes sense to the case.
 - Please provide documentation for the endpoints you create.
+- If you are applying for a fullstack position, front-end must be easy to use and it should have a nice look & feel.
 
 ### Functional (user stories)
 1. Our B2B clients should be able to consume an endpoint that provides them the following information:
