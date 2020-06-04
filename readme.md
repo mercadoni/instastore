@@ -49,3 +49,8 @@ InstaStore is a microservice in charge of selecting the closest "convenience" st
 2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
 3. Do you think your service is secure? why?
 4. What would you do to measure the behaviour of your product on a production environment?
+
+
+## API and Client
+### The API is hosted in Heroku accessible from here: https://vast-shore-45582.herokuapp.com/
+### The client is hosted in GitHub and is accessible from here: https://cdcordobaa.github.io/instastore-front-c/
