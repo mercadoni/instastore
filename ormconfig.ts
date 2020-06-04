@@ -7,7 +7,7 @@ module.exports = [
     migrationsRun: true,
     logging: true,
     url: process.env.DATABASE_URL,
-    // host: process.env.DATABASE_URL, //`/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`,
+    // host: process.env.DB_DEV_HOST,
     // username: process.env.DB_USER,
     // database: process.env.DB_DATABASE,
     // password: process.env.DB_PASS,
