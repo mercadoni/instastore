@@ -1,0 +1,6 @@
+[submodule "instastore-front-c"]
+	path = instastore-front-c
+	url = git@github.com:cdcordobaa/instastore-front-c.git
+[submodule "instastore-back-c"]
+	path = instastore-back-c
+	url = git@github.com:cdcordobaa/instastore-back-c.git
