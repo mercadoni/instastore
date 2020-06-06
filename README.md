@@ -48,7 +48,7 @@ npm install
 npm start
 ```
 ## **Frontend** 
-front Git hub repo http://cdcordobaa.github.io/instastore-front-c
+front Git hub repo https://github.com/cdcordobaa/instastore-front-c
 
 
 Make sure you add and env with all the following keys, making changes where applied
