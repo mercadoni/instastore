@@ -49,3 +49,53 @@ InstaStore is a microservice in charge of selecting the closest "convenience" st
 2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
 3. Do you think your service is secure? why?
 4. What would you do to measure the behaviour of your product on a production environment?
+   
+## First Delivery
+
+### Architecture
+The microservices architecture has four elements:
+
+1. A Nginx Balancer.
+2. A microservices layer in NODEJS.
+3. A PostgresSQL Database with Postgis and NoSQL support.
+4. A data lake Layer for logs analysis and other information analysis. 
+
+All this running on Docker 
+
+### Answers
+1. What would you improve from your code? why?
+ 
+**FRONT**
+- Add redux
+- Add axios
+
+**BACK**
+- add layer security
+- add a IDP
+- add a registry for microservices.
+
+**Devops**
+- add Dockerfile for developer enviroment
+
+**Logs and BigData**
+- add integration with ELK stack from logs 
+- add grafana integration
+  
+
+2. hich trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+
+- I couldn't create a map in front, I spended to much time with a postgis integration.
+- I need improve my react skills 
+
+3.  Do you think your service is secure? why?
+
+No, the backend does not have a security layer, all requests is response.
+
+4. What would you do to measure the behaviour of your product on a production environment?
+
+- Connect logs to ELK and create dashboards to monitor it.
+- Use New Relic.
+- integrate postgressql logs to ELK or Grafana.
+   
+
+![Architecture](Arquitectura.png)
