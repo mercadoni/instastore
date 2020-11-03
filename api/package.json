@@ -1,0 +1,18 @@
+{
+  "name": "InstaStoreAPI",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/felix-orduz/instastore",
+  "author": "Felix E. Orduz G.",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "geojson": "^0.5.0",
+    "pg": "^8.4.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "winston": "^3.3.3"
+  }
+}
