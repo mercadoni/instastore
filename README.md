@@ -3,7 +3,7 @@ Technical test for back-end and full-stack developers.
  - [Instructions](#instructions)
  - [Requirements](#requirements)
  - [Improvements and trade offs](#improvements-and-trade-offs)
- 
+
 ## Instructions
  1. Fork this repo.
  2. Create a new branch.
