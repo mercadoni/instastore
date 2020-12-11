@@ -11,6 +11,7 @@ Technical test for back-end developers.
 - [How to run the project](#run-the-project)
 - [Blockers and pains](#blockers-and-pains)
 - [Improvements and trade offs](#improvements-and-trade-offs)
+- [Delivery Time](#delivery-time)
 
 ## Questions and answers
 
@@ -46,7 +47,7 @@ Technical test for back-end developers.
     - **Answer**: [the same as in the numeral 4](#How-is-the-closest-distance-between-the-stores-and-clients-defined); plus,  Please make a proposal according to the input I sent you in numeral 2
 
 7. **to test the stores' data is created by myself or there is any dataset with the info**
-    - **Answer**: I am attaching a csv with the stores [table is here]()
+    - **Answer**: I am attaching a csv with the stores [table is here](https://github.com/carlos4rias/instastore/blob/carlos4rias-test/stores.csv)
 
 
 
@@ -87,7 +88,7 @@ In this section  i'm going to propose and defined which data, models, formats ar
 ## Architecture
 In this section i will explain the "Architecture" (sorry for the "diagram" :D) that will be implemented to solve the test, services, models, etc
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Architecture Instastore")
+![alt text](https://raw.githubusercontent.com/carlos4rias/instastore/carlos4rias-test/architecture.jpg "Architecture Instastore")
 
 ### Architecture explanation
 
@@ -109,3 +110,6 @@ i will use docker containers, i will describe it better when i finish the projec
 - Try to use the google API, i found that a credit card is required didnt reasearch more about because of time
 
 ## Improvements and trade offs
+
+## Delivery Time
+    Saturday Dec 12, 3:00 pm
