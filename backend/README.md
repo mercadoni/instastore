@@ -100,8 +100,25 @@ Is a simple architecture that consist of two "services" and one data base conect
 
 **TrackData**: As i said in the previous point, this is for intern use and will be called when a user query the endpoint for get the closest store, it will save in the data base the important data that i have described in previous literals to be tracked
 
-### Collection structure
+### Collection structure (Data model)
 
+#### Store
+        {
+            id: string
+            storeName: string,
+            latitude: number,
+            longitude: number,
+            address: string,
+            country: string,
+            city: string,
+            state: string,
+            zipCode: number,
+            openingTime: number,
+            closingTime: number,
+            nextDeliveryTime: number
+        }
+openingTime, closingTime and nextDeliveryTime, are going to be saved in minutes it makes easier operate with them.  
+_for example: if the opening time is 8:00 it is going to be saved like 480 = 8 hours times 60_
 
 ## How to run the project
 i will use docker containers, i will describe it better when i finish the project
