@@ -125,6 +125,7 @@ i will use docker containers, i will describe it better when i finish the projec
 
 ## Blockers and pains
 - Try to use the google API, i found that a credit card is required didnt reasearch more about because of time
+- There was an issue that wasted time to solve and it's about connect to the database, as i was working with docker then connection should be done with retry, i found sollution [here](https://github.com/docker/hub-feedback/issues/1255)
 
 ## Improvements and trade offs
 
