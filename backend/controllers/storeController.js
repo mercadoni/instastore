@@ -2,6 +2,7 @@ const { check, validationResult } = require('express-validator');
 const moment = require('moment')
 
 const utils = require('../utils/utils');
+const trackedDataController = require('../controllers/trackedDataController')
 const Store = require('../models/store');
 
 module.exports = {
@@ -113,6 +114,19 @@ module.exports = {
           isOpen: closestStore.isOpen,
           nextDeliveryTime: closestStore.nextDeliveryTime
         }
+
+        // save the data tha is going to be tracked
+        const trackedDataPayload = {
+          nameAddress: userResquestData.name,
+          address: userResquestData.address,
+          country: userResquestData.country,
+          latitude: userResquestData.latitude,
+          longitude: userResquestData.longitude,
+          date: moment(),
+          store: closestStore._id
+        }
+
+        const tracked = await trackedDataController.saveTrackedData(trackedDataPayload)
 
         return res.status(200).json(clientResponse)
       }

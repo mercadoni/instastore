@@ -63,7 +63,7 @@ StoreSchema.virtual('isOpen').get(() => {
 /**
  * Virtual for know the media velocity of the delivery time for each store
  * this time it is going to be choose ramdonly just for practise
- * and always will be in the range 40-60 Km/hr
+ * and always will be in the range 30-60 Km/hr
  */
 StoreSchema.virtual('mediaVelocity').get(() => {
   return utils.getRandomNumberBetweenRange(30, 60);

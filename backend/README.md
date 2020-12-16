@@ -76,9 +76,9 @@ In this section  i'm going to propose and defined which data, models, formats ar
 
 - With the information presented above, i'm going to define the untie criteria and which info worth to be saved and how while we track every request to the endpoint:  
     - Untie criteria
-        1. only work with openned stores **isOpen** because we need that a client get the groceries the current day
-        2. then we will untie for the **nextDeliveryTime + aproxTimeOfDelivery** given in minutes
-        3. if there still a tie we untie by **distance** because the **aproxTimeOfDelivery** could not be very accurate and a shorter distance means a chance to delivery faster
+        1. first we will untie for the **nextDeliveryTime + aproxTimeOfDelivery** given in minutes
+        2. if there still a tie we untie by **distance** because the **aproxTimeOfDelivery** could not be very accurate and a shorter distance means a chance to delivery faster
+        3. we are not going to bear in mind the isOpen, because may a closed store deliver faster than an open one
     - important information to be tracked (we are going to save it in a NonSQL database in this case MongoDB )
         1. client information [name, address, coordinates] // util if we want to know who is the customer that use the most our application and give her/his benefits like discounts, more priority etc..
         2. store information [id, name, coordinates] // util for know which is the most store requested to delivery groceries, know which area is the most requested (a query by area like a polygon)
@@ -119,6 +119,18 @@ Is a simple architecture that consist of two "services" and one data base conect
         }
 openingTime, closingTime and nextDeliveryTime, are going to be saved in minutes it makes easier operate with them.  
 _for example: if the opening time is 8:00 it is going to be saved like 480 = 8 hours times 60_
+
+#### TrackedData
+        {
+            {
+                nameAddress: String,
+                address: String,
+                country: String,
+                latitude: Number,
+                longitude: Number,
+                store: Schema.ObjectId
+            }
+        }
 
 ## How to run the project
 i will use docker containers, i will describe it better when i finish the project
