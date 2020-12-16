@@ -33,7 +33,6 @@ var StoreSchema = new Schema(
     },
     zipCode: {
       type: Number,
-      required: true,
     },
     openingTime: {
       type: Number,

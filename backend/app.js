@@ -7,7 +7,7 @@ const storesRouter = require('./routes/stores');
 
 const app = express();
 
-dbConnection.connect()
+dbConnection.connection()
 
 app.use(logger('dev'));
 app.use(express.json());
