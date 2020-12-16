@@ -14,6 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/stores', storesRouter);
+app.use('/api/stores', storesRouter);
 
 module.exports = app;
