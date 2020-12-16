@@ -14,6 +14,7 @@ async function connection() {
     console.log('Connected to MongoDB :)')
     await populateDB.cleanDB()
     await populateDB.populateStores()
+    await populateDB.populateUsers()
   })
 
   mongoose.connect(dbConfig.db, dbOptions)

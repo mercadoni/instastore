@@ -65,8 +65,6 @@ module.exports = {
         let bestAproxTimeOfDelivery = 1e18
         let bestStoreDistance = 1e18
         let closestStoreSoFarIndex = -1
-        console.log("userResquestData")
-        console.log(userResquestData)
 
         const clientCoordinates = {
           latitude: userResquestData.latitude,

@@ -55,7 +55,7 @@ Technical test for back-end developers.
 
 In this section  i'm going to propose and defined which data, models, formats are gonna be implemented based in the answers given
 
-- The authentication is going to be implemented if there is time to implement it
+- The authentication is going to be implemented if there is time to implement it, at the end i will implement a very basic auth with JWT and a user for test it
 - When the endpoint to get the closest store is called it should receive the data that is required plus the latitude and longitude that are required to calculate the distance to the stores, those info is defined in the [previous point](##questions-and-answers) in the **numeral 2**
 - The data that is returned to the client is going to be given in JSON format and will contain the next fields (that are given in the first document) plus another fields:
 
@@ -122,24 +122,86 @@ _for example: if the opening time is 8:00 it is going to be saved like 480 = 8 h
 
 #### TrackedData
         {
-            {
-                nameAddress: String,
-                address: String,
-                country: String,
-                latitude: Number,
-                longitude: Number,
-                store: Schema.ObjectId
-            }
+            nameAddress: String,
+            address: String,
+            country: String,
+            latitude: Number,
+            longitude: Number,
+            store: Schema.ObjectId
         }
 
+
+#### User
+        {
+            username: String,
+            password: String,
+        }
 ## How to run the project
-i will use docker containers, i will describe it better when i finish the project
+in order to run the project docker-compose is required  
+to start the project write 
+        
+        docker-compose up
+bear in mind that the current dir must be the one that contains the file `docker-compose.yml`
+
+then the stores and one user will be created, the user credentials are below:
+
+        username: test
+        password uno2345
+
+if you wanna interact with the API you can do it with postman or curl, below are the curl instructions to auth and request the endpoint
+
+auth user:
+
+        curl --location --request POST 'http://localhost:3000/api/user/login' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "username": "test",
+            "password": "uno2345"
+        }'
+
+query the endpoint (the previous jwt is required here):
+
+        curl --location --request POST 'http://localhost:3000/api/stores/closest-store' \
+        --header 'jwt-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ5ZTU2ZjAwYjMwNjAwMTI0OTZkYWMiLCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2MDgxMTU1Njh9.E2Yk4lucltvQge6rVya2Oq1j5aWfm3B4e9SFdX5XNcU' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "destination": {
+                "name": "adios",
+                "address": "mz 15 cas",
+                "address_two": " string",
+                "description": " string",
+                "country": "CO",
+                "city": " 12",
+                "state": " string",
+                "zip_code": " string",
+                "latitude": 24.2121,
+                "longitude": -100.12313
+            }
+        }'
 
 ## Blockers and pains
 - Try to use the google API, i found that a credit card is required didnt reasearch more about because of time
-- There was an issue that wasted time to solve and it's about connect to the database, as i was working with docker then connection should be done with retry, i found sollution [here](https://github.com/docker/hub-feedback/issues/1255)
+- There was an issue that wasted time to solve and it's about connect to the database, as i was working with docker then connection should be done with retry, i found sollution [here](https://github.com/docker/hub-feedback/issues/1255), at the end i tried another thing that worked!
+- Run out of time and an strong auth system couldnt be implemente :(
 
 ## Improvements and trade offs
+
+1. **What would you improve from your code? why?**  
+    i would love to improve the auth, because i run out of time and just implemented the basic one, also do unitary test for the endpoint that get the closest store, for the function that calculate the distance between two points in an sphere (i tested it with know data but would be nicer if there had test implemente); Also a system for document the API endpoints like swagger it does pretty nice, i was about setup TypeScript for the proyect but i was too advance on it could be a nice improvement. 
+
+2. **Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?**  
+    I would waste less time in the boilerplate and data generators to populate the database and will dedicate more time to setup TypeScript, test the endpoints and integrate swagger.
+
+3. **Do you think your service is secure? why?**  
+    The service has a very basic auth for protect it against people that isnt authorized, also it validates the info that the user send to the endpoint for avoid inconsistent data, also a little of sanitation of the data, but there still  a lot things that aren't covered, so i think my service is 2/5 secure
+
+4. **What would you do to measure the behaviour of your product on a production environment?**  
+    Would implement a logger when something goes wrong letting identify bugs and solve them, also in the logs keep metrics about how fast is answering our servies to check the performance and would know how many request were succesfull and which were not and get the metrics about how efficient is our service.
+
+    Also to avoid the chaos, i could release the feature progressively for the people(kinda 10%, 20%...) to check out it's going on and when everything is under control realease for the 100% for the people
+
+
+
 
 ## Delivery Time
     ----------------------------------------------
