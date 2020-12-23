@@ -10,13 +10,15 @@ Technical test for back-end and full-stack developers.
  3. Understand the functional and non-functional requirements.
  4. Ask any questions to david.camargo@instaleap.io. (you have 1 chance, make it worthy)
  4. As your first commit, copy your questions and David's answers, and design the "architecture" of your service. Upload a
-    sketch/photo/readme, etc explaining how your service is going to work, and when do you think you can deliver
-    the final product (we expect you to deliver it in less than 2 days). If you are applying for a Fullstack position, send a wireframe with your proposed solution.
- 5. Have fun coding this challenge. Take into account that the data provided could have inconsistencies, make sure to handle them.
- 6. If you find blockers, keep moving and get them solved later, please write them down in a markdown file inside your repo.
- 7. Answer the [Improvements and trade offs](#improvements-and-trade-offs) section.
- 7. Create a Pull Request (in your own fork), add 'davidcp90' as a reviewer, and send an email to david.camargo@instaleap.io
+ {
+   sketch/photo/readme, etc explaining how your service is going to work, and when do you think you can deliver
+   the final product (we expect you to deliver it in less than 2 days). If you are applying for a Fullstack position, send a wireframe with your proposed solution.
+   5. Have fun coding this challenge. Take into account that the data provided could have inconsistencies, make sure to handle them.
+   6. If you find blockers, keep moving and get them solved later, please write them down in a markdown file inside your repo.
+   7. Answer the [Improvements and trade offs](#improvements-and-trade-offs) section.
+   7. Create a Pull Request (in your own fork), add 'davidcp90' as a reviewer, and send an email to david.camargo@instaleap.io
 
+ }
 ## Requirements
 InstaStore is a microservice in charge of selecting the closest "convenience" store to deliver a groceries order to our B2B clients.
 

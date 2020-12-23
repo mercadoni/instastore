@@ -1,0 +1,19 @@
+{
+  "name": "instastore",
+  "version": "1.0.0",
+  "description": "Technical test for back-end and full-stack developers.\r  - [Instructions](#instructions)\r  - [Requirements](#requirements)\r  - [Improvements and trade offs](#improvements-and-trade-offs)",
+  "main": "stores.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanDavidRT/instastore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuanDavidRT/instastore/issues"
+  },
+  "homepage": "https://github.com/JuanDavidRT/instastore#readme"
+}

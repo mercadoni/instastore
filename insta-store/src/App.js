@@ -1,7 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from "react"
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import logo from './logo.svg';
 import './App.css';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Icon from '@material-ui/core/Icon';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import { spacing } from '@material-ui/system';
+
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
+
+const center = {
+  lat:4.68284,
+  lng: -74.045
+};
 
 class App extends Component {
   constructor(props) {
@@ -14,8 +34,11 @@ class App extends Component {
   }
 
   render() {
+
     var lat;
     var lng;
+
+
     function  obtainLocation() {
         if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -26,13 +49,19 @@ class App extends Component {
         }
       }
     function userLocation(laat, long) {
-     document.getElementById("txt1").innerHTML = "your location is:";
-     document.getElementById("txt2").innerHTML = laat + ' , ' +long; // A location that means somthng
-     lat = laat;
-     lng = long
-     setTimeout(function () {
-       closestStore("wok")
-     }, 4000);
+      document.getElementById("txt1").innerHTML = " we are finding it for you... ";
+      document.getElementById("txt2").innerHTML = "please wait";
+      //document.getElementById("txt2").innerHTML = laat + ' , ' + long; // A location that means somthng
+      lat = laat;
+      lng = long
+
+      const center = {
+        lat: laat,
+        lng: long
+      };
+      setTimeout(function () {
+        closestStore("wok")
+      }, 4000);
     }
 
     function compare2Points(p1,p2){ // EACH PINT IS AN LAT,LNG ARRAY
@@ -51,7 +80,7 @@ class App extends Component {
       //return d; // returns the distance in meter
       return Math.round(d); //Rounded is better
     }
-
+/*
     function rankDistance(){
       var rank = [];
       for (var i = 0; i < stores.length; i++) {
@@ -60,28 +89,38 @@ class App extends Component {
 
     //sortttt
       return rank[0];
-    }
+    }*/
 
     function closestStore(rank){
-      document.getElementById("txt1").innerHTML = "la tienda más cercana es";
-      document.getElementById("txt2").innerHTML = rank; // A location that means somthng
+      document.getElementById("txt1").innerHTML = "nearest store is:";
+      document.getElementById("txt2").innerHTML = "Wok<p>is open:☑</p> <p>next delivery: 45 min.</p><p>lat: "+lat.toPrecision(6)+"<p>lng:"+lng.toPrecision(6)+"</p><p>tel: (+57)895745</p><p>email: wok@delivery.com</p>";
+      document.getElementById("button").innerHTML = "try again";
     }
+
 
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1> InstaStore </h1>
+          <Card pxy={10} elevation={4} bgcolor="gray" >
+            <LocationOnIcon fontSize="large" />
+          <h3> InstaStore </h3>
           <p id="txt1">let's find the closest store!</p>
           <p id="txt2">please allow us to know your location</p>
-          <Button variant="contained" onClick={obtainLocation}>allow</Button>
+          <Button id="button" variant="contained" onClick={obtainLocation} startIcon={<LocationOnIcon />}>allow</Button>
+          </Card>
+          <div id="mapa">
+          <LoadScript googleMapsApiKey="AIzaSyCe7cxHG3f8zxBrc5rV9m3fAqMPIZxv7Qc">
+        <GoogleMap display= {false}
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={17}
+        ></GoogleMap>
+      </LoadScript>
+          </div>
+
         </header>
       </div>
     );
   }
 }
-
-
-
-
 export default App;
