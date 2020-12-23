@@ -13,6 +13,7 @@
     "google-maps": "^4.3.3",
     "google-maps-react": "^2.0.6",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
     "styled-content-loader": "^1.1.3",

@@ -12,6 +12,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { spacing } from '@material-ui/system';
+import Navbar from 'react-bootstrap/Navbar'
 
 const containerStyle = {
   width: '400px',
@@ -99,9 +100,19 @@ class App extends Component {
 
 
     return (
-      <div className="App">
+      <div className="App"> <Navbar bg="black">
+    <Navbar.Brand href="#home">
+      <img
+        src="/logo.svg"
+        width="30"
+        height="30"
+      />
+    </Navbar.Brand>
+  </Navbar>
+  <br />
+
         <header className="App-header">
-          <Card pxy={10} elevation={4} bgcolor="gray" >
+          <Card pxy={10} elevation={5} bgcolor="gray" >
             <LocationOnIcon fontSize="large" />
           <h3> InstaStore </h3>
           <p id="txt1">let's find the closest store!</p>
