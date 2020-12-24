@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+    postgist-instastore:
+        build:
+            context: ./postgis
+            dockerfile: Dockerfile
+        container_name: postgis-instastore
+        environment:
+            TZ: 'America/Bogota'
+            PGTZ: 'America/Bogota'
+        ports:
+            - "5432:5432"
+    node-instastore:
+        build:
+            context: ./nodejs
+            dockerfile: Dockerfile
+        container_name: node-instastore
+        ports:
+            - "3000:3000"
+        links:
+            - postgist-instastore

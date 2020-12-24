@@ -1,0 +1,7 @@
+{
+  "host": "postgist-instastore",
+  "user": "instastore",
+  "password": "mysecretpassword",
+  "database": "docker",
+  "port": 5432
+}
