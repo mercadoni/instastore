@@ -5,7 +5,7 @@ set -eu
 echo "Checking DB connection ..."
     
 i=0
-until [ $i -ge 10 ]
+until [ $i -ge 50 ]
 do
     nc -z instastore-db 33060 && break
     
@@ -15,7 +15,7 @@ do
     sleep 1
 done
     
-if [ $i -eq 10 ]
+if [ $i -eq 50 ]
 then
     echo "DB connection refused, terminating ..."
     exit 1

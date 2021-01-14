@@ -1,23 +1,80 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const mysql = require('mysql'); 
+const { response } = require("express");
 const app = express();app.use(bodyParser.urlencoded({ extended: false }));
 
-var con = mysql.createConnection({
+var connection = mysql.createConnection({
     host: "instastore-db",
     user: "root",
     password: "secret",
-    insecureAuth: true
+    database: 'instastore'
 });
 
-con.connect(function(err) {
+connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 });
 
 app.use(bodyParser.json());
 
-let usuario = {
+function resolve(req) {
+    return new Promise(function (resolve, reject) {
+        var query = "SELECT Store.StoreId, Store.StoreName, Store.CoordinateLatitude, Store.CoordinateLongitude, haversine(Store.CoordinateLatitude, Store.CoordinateLongitude, " + req.query.latitude + ", " + req.query.longitude + ") as distance, filtered.StartsAt, filtered.EndsAt FROM Store "
+                + "LEFT JOIN "
+                + "( SELECT * FROM `instastore`.`Schedule` WHERE WeekDay = WEEKDAY(CURDATE()) AND CURTIME() BETWEEN StartsAt and EndsAt) as filtered "
+                + "ON ( Store.StoreId = filtered.StoreId) "
+                + "ORDER BY distance ASC LIMIT 1;";
+        
+        connection.query(
+            query,
+            function (err, result) {
+                if (err) throw err;
+                
+                closestStore = result[0];
+                console.log(closestStore);
+
+                var response = {
+                    storeId: closestStore.StoreId,
+                    storeName: closestStore.StoreName,
+                    isOpen: (closestStore.StartsAt != null),
+                    coordinates: {
+                        latitude: closestStore.CoordinateLatitude,
+                        longitude: closestStore.CoordinateLongitude
+                    },
+                    nextDeliveryTime: null
+                }
+
+                resolve(response);
+            }
+        );
+    });
+
+    /*respuesta = {
+        error: true,
+        codigo: 200,
+        mensaje: "SELECT Store.StoreId, haversine(Store.CoordinateLatitude, Store.CoordinateLongitude, " + req.query.latitude + ", " + req.query.longitude + ") as distance FROM `instastore`.`Store` ORDER BY distance ASC LIMIT 1"
+    };
+
+    return respuesta*/
+    
+}
+
+app.get('/store/closest', function(req, res) {
+    resolve(req).then( (store) => { 
+        console.log(store);
+
+        var response = {
+            error: false,
+            code: 200,
+            message: store
+        };
+
+        res.send(response);
+    } );
+   });
+
+/*let usuario = {
  nombre:'',
  apellido: ''
 };
@@ -147,6 +204,7 @@ app.route('/usuario')
 
         res.send(respuesta);
     });
+*/
  
 app.use(function(req, res, next) {
     respuesta = {
