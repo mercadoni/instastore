@@ -2,20 +2,25 @@ const { getClosestStoreService } = require('./../service/store.service');
 
 const getClosestStore = (req) => {
     return new Promise(function (resolve, reject) {
-        getClosestStoreService(req.query.latitude, req.query.longitude).then( (result) => {
-            var response = {
-                storeId: result.StoreId,
-                storeName: result.StoreName,
-                isOpen: (result.StartsAt != null),
-                coordinates: {
-                    latitude: result.CoordinateLatitude,
-                    longitude: result.CoordinateLongitude
-                },
-                nextDeliveryTime: null
+        getClosestStoreService(req.query.latitude, req.query.longitude).then( (store) => {
+            var response  = null;
+            if( store != null ){
+                var response = {
+                    storeId: store.StoreId,
+                    storeName: store.StoreName,
+                    isOpen: (store.StartsAt != null),
+                    coordinates: {
+                        latitude: store.CoordinateLatitude,
+                        longitude: store.CoordinateLongitude
+                    },
+                    nextDeliveryTime: null
+                };
             }
 
             resolve(response);
-        } );
+        } ).catch(err => {
+            reject(err);
+        });
     });    
 }
 

@@ -6,14 +6,18 @@ const getClosestStoreService = ( latitude, longitude ) => {
                 + "LEFT JOIN "
                 + "( SELECT * FROM `instastore`.`Schedule` WHERE WeekDay = WEEKDAY(CURDATE()) AND CURTIME() BETWEEN StartsAt and EndsAt) as filtered "
                 + "ON ( Store.StoreId = filtered.StoreId) "
+                + "WHERE filtered.StartsAt IS NOT NULL AND filtered.EndsAt IS NOT NULL "
                 + "ORDER BY distance ASC LIMIT 1;";
-        
+
         database.query(
             query,
             [latitude, longitude],
             function (err, result) {
-                if (err) throw err;
-                    
+                if(err) { 
+                    reject(err);
+                    return;
+                }
+
                 closestStore = result[0];
 
                 resolve( closestStore );
