@@ -9,6 +9,7 @@ const getClosestStoreService = ( latitude, longitude ) => {
                 + "( SELECT * FROM `instastore`.`Schedule` WHERE WeekDay = WEEKDAY(CURDATE()) AND CURTIME() BETWEEN StartsAt and EndsAt) as filtered "
                 + "ON ( Store.StoreId = filtered.StoreId) "
                 + "WHERE filtered.StartsAt IS NOT NULL AND filtered.EndsAt IS NOT NULL "
+                + "HAVING distance <= 5 "
                 + "ORDER BY distance ASC LIMIT 1;";
 
         database.query(

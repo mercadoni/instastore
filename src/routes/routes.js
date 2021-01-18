@@ -13,35 +13,29 @@ router.get('/store/closest', function(req, res) {
         if( !store ) code = 204;
 
         var response = {
-            error: false,
-            code: code,
             message: store
         };
 
         logger.info('Endpoint responses: %d', code);
 
-        res.send(response);
+        res.status(code).send(response);
     } ).catch(err => {
         var response = {
-            error: true,
-            code: 500,
             message: 'Internal error'
         };
 
         logger.error('Endpoint responses: %d', code);
 
-        res.send(response);
+        res.status(500).send(response);
     });
    });
 
 router.use(function(req, res, next) {
-    respuesta = {
-        error: true, 
-        codigo: 404, 
-        mensaje: 'URL no encontrada'
+    response = { 
+        message: 'URL not found'
     };
 
-    res.status(404).send(respuesta);
+    res.status(404).send(response);
 });
 
 module.exports = router;

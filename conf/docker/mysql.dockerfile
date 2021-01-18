@@ -4,3 +4,6 @@ FROM mysql:8.0.19
 # All scripts in docker-entrypoint-initdb.d/ are automatically
 # executed during container startup
 COPY ./conf/db/db.sql /docker-entrypoint-initdb.d/
+
+RUN echo "America/Bogota" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata

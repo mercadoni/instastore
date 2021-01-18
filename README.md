@@ -1,21 +1,85 @@
 # InstaStore
-Technical test for back-end and full-stack developers.
- - [Instructions](#instructions)
- - [Requirements](#requirements)
- - [Improvements and trade offs](#improvements-and-trade-offs)
+Technical test for back-end by Dorian Abad Tovar Díaz.
+
+## API
+
+This API is developed on a Dockerized environment. It's deployed using two instances, one as a Node project that holds the business logic, the second one has a MySQL environment for data persistence purposes.
+
+To run the project, you need to run this command (remember, you need to have Docker and docker-compose installed in your machine):
+
+
+    docker-compose up
+
+### Database
+
+The database for this project is composed of three tables as this:
+
+![alt text](./misc/Database.PNG "Database diagram")
+
+### API Description
+
+The API is comprised of an endpoint that looks like this:
+
+* **Title**
+
+    Get Closest Store
+
+* **URL**
+
+    /v1/store/closest/?latitude=X&longitude=X
+
+* **Method:** `GET`
+
+*  **URL Params**
+
+   **Required:**
  
-## Instructions
- 1. Fork this repo.
- 2. Create a new branch.
- 3. Understand the functional and non-functional requirements.
- 4. Ask any questions to david.camargo@instaleap.io. (you have 1 chance, make it worthy)
- 4. As your first commit, copy your questions and David's answers, and design the "architecture" of your service. Upload a
-    sketch/photo/readme, etc explaining how your service is going to work, and when do you think you can deliver
-    the final product (we expect you to deliver it in less than 2 days). If you are applying for a Fullstack position, send a wireframe with your proposed solution.
- 5. Have fun coding this challenge. Take into account that the data provided could have inconsistencies, make sure to handle them.
- 6. If you find blockers, keep moving and get them solved later, please write them down in a markdown file inside your repo.
- 7. Answer the [Improvements and trade offs](#improvements-and-trade-offs) section.
- 7. Create a Pull Request (in your own fork), add 'davidcp90' as a reviewer, and send an email to david.camargo@instaleap.io
+   `latitude=[double]`
+
+   `longitude=[double]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+      "message":{
+        "storeId": 5,
+        "storeName": "Instastore Kennedy",
+        "isOpen": true,
+        "coordinates":{
+          "latitude": 4.609393346720635,
+          "longitude": -74.15202185751941
+          },
+        "nextDeliveryTime": null
+      }
+    }
+    ```
+
+    OR
+
+    
+  * **Code:** 204 <br />
+    **Content:** ```No content```
+    
+* **Error Response:**
+  * **Code:** 500 <br />
+    **Content:** 
+    ```
+    {
+      "message": 'Internal error'
+    }
+    ```
+
+  * **Code:** 404 <br />
+    **Content:** 
+    ```
+    {
+      "message": 'URL not found'
+    }
+    ```
+
 
 ## Requirements
 InstaStore is a microservice in charge of selecting the closest "convenience" store to deliver a groceries order to our B2B clients.
