@@ -1,6 +1,8 @@
+const { logger } = require('./../util/log');
 const { getClosestStoreService } = require('./../service/store.service');
 
 const getClosestStore = (req) => {
+    logger.debug('Enter getClosestStore controller');
     return new Promise(function (resolve, reject) {
         getClosestStoreService(req.query.latitude, req.query.longitude).then( (store) => {
             var response  = null;

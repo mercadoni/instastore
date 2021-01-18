@@ -7,6 +7,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT,
+  logs: process.env.LOG_LEVEL,
   database: {
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,

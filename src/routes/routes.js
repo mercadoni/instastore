@@ -1,10 +1,12 @@
 const express = require('express');
+const { logger } = require('./../util/log');
 const { getClosestStore } = require('./../controller/store.controller');
 
 const router = express.Router();
 
 // define the home page route
 router.get('/store/closest', function(req, res) {
+    logger.debug('Enter /store/closest endpoint');
     getClosestStore(req).then( (store) => {
         var code = 200;
 
@@ -16,6 +18,8 @@ router.get('/store/closest', function(req, res) {
             message: store
         };
 
+        logger.info('Endpoint responses: %d', code);
+
         res.send(response);
     } ).catch(err => {
         var response = {
@@ -23,6 +27,8 @@ router.get('/store/closest', function(req, res) {
             code: 500,
             message: 'Internal error'
         };
+
+        logger.error('Endpoint responses: %d', code);
 
         res.send(response);
     });

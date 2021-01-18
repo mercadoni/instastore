@@ -1,6 +1,8 @@
 const database = require('./../util/db');
+const { logger } = require('./../util/log');
 
 const getClosestStoreService = ( latitude, longitude ) => {
+    logger.debug('Enter getClosestStoreService service');
     return new Promise(function (resolve, reject) {
         var query = "SELECT Store.StoreId, Store.StoreName, Store.CoordinateLatitude, Store.CoordinateLongitude, haversine(Store.CoordinateLatitude, Store.CoordinateLongitude, ?, ?) as distance, filtered.StartsAt, filtered.EndsAt FROM Store "
                 + "LEFT JOIN "
@@ -15,6 +17,7 @@ const getClosestStoreService = ( latitude, longitude ) => {
             function (err, result) {
                 if(err) { 
                     reject(err);
+
                     return;
                 }
 
