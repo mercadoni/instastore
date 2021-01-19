@@ -12,9 +12,19 @@ To run the project, you need to run this command (remember, you need to have Doc
 
 ### Database
 
-The database for this project is composed of three tables as this:
+The database for this project is composed of the following tables:
 
 ![alt text](./misc/Database.PNG "Database diagram")
+
+Where:
+
+* **Store:** Represents each individual store.
+
+* **Schedule:** Holds the open and close schedules of the physical store.
+
+* **Delivery:** Have the schedules for each delivery times in each store and the total capacity for each of those timelapses.
+
+* **Order:** Each order is asigned to a delivery timelapse and represents 1 in the total capacity of delivery in each store.
 
 ### API Description
 
@@ -44,15 +54,15 @@ The API is comprised of an endpoint that looks like this:
     **Content:** 
     ```
     {
-      "message":{
+      "message": {
         "storeId": 5,
         "storeName": "Instastore Kennedy",
-        "isOpen": true,
-        "coordinates":{
-          "latitude": 4.609393346720635,
-          "longitude": -74.15202185751941
-          },
-        "nextDeliveryTime": null
+        "isOpen": 0,
+        "coordinates": {
+            "latitude": 4.609393346720635,
+            "longitude": -74.15202185751941
+        },
+        "nextDeliveryTime": "2021-01-19T08:00:00.000Z"
       }
     }
     ```
@@ -109,36 +119,20 @@ The API is comprised of an endpoint that looks like this:
 
 /A: More than the proximity range you can take into account the following parameters. In the endpoint you would receive latitude and longitude of the address they are asking. The furthest the customer's address can be is 5km from the store.
 
-
-## Requirements
-InstaStore is a microservice in charge of selecting the closest "convenience" store to deliver a groceries order to our B2B clients.
-
-### Non-functional
-- We expect you to deliver idiomatic code in a way that is easy to read and follows the accepted guidelines in your area of expertise.
-- You should write it on Node.js with Express.js. Libraries, transpilers , etc are up to you.
-- If you are applying for a fullstack position, front-end must be build with React.
-- Endpoints are fast (less than 300ms).
-- Endpoints respond error codes that makes sense to the case.
-- Please provide documentation for the endpoints you create.
-- If you are applying for a fullstack position, front-end must be easy to use and it should have a nice look & feel.
-
-### Functional
-1. Our B2B clients should be able to consume an endpoint that provides them the following information:
-  - storeId
-  - storeName
-  - isOpen
-  - coordinates
-  - nextDeliveryTime
-2. The endpoint returns the closest store available
-3. We need to keep track of each call to the endpoint
-#### For full-stack developers
-1. The UI should capture the address/position from a user
-2. After capturing the address it should request the closest store and show the address captured and the closest store in a map, and their details (isOpen, next delivery time, coordinates, storeName, store phone number and email).
-3. It should manage errors and unexpected requests. Users should always know what to do.
-4. App should include a top bar with a logo (go nuts)
-5. The app should be served through a CDN
 ## Improvements and trade offs
 1. What would you improve from your code? why?
+
+    Maybe the nextDeliveryTime could be implemented in a more efficient way than checking by day.
+
 2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+
+    I could choose to trade-off some of the environment preparations as Docker instances and environment variables instantiation for a better and deeper understanding of the nextDeliveryTime requirement.
+
 3. Do you think your service is secure? why?
+
+    Not completely, if the endpoint have the requirement of being consumed only by registered users, I could implement a JWT token verification subsystem to ensure the proper connection. I could add some security checks at Docker level and at a Node.js level.
+
 4. What would you do to measure the behaviour of your product on a production environment?
+
+    I would like to add different levels of testing to a product as it's known on the testing pyramid, from Unit testing, Integration testing, Functional testing up to Load/Stress testing and UI/UX testing.
+
