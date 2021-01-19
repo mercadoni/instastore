@@ -24,7 +24,7 @@ router.get('/store/closest', function(req, res) {
             message: 'Internal error'
         };
 
-        logger.error('Endpoint responses: %d', code);
+        logger.error('Endpoint responses: 500');
 
         res.status(500).send(response);
     });

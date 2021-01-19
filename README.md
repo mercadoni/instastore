@@ -80,6 +80,35 @@ The API is comprised of an endpoint that looks like this:
     }
     ```
 
+* **Sample Call:**
+    * **Success Response with closest store (200):**
+        
+        http://localhost:3000/v1/store/closest/?latitude=4.616710202626701&longitude=-74.15306627892195
+    
+    * **Success Response without closest store (204):**
+        
+        http://localhost:3000/v1/store/closest/?latitude=4.610153044262533&longitude=-74.07053817093107
+
+## Questions
+
+1. About nextDeliveryTime, assuming a functionality from its name, I understand that specifies the time where is going to take place the next delivery of an order, so: 
+
+/A: It's the next delivery schedule, I don't know if you've seen in apps like Rappi that when you order in the supermarket a list of hours comes out, sometimes there is a first schedule that is in the next hour but sometimes he only lets me order until the next day. The nextDeliveryTime refers to the nearest time interval in which I can order/deliver the order
+
+  * Is this functionality periodically?, lets say, Is there an specified hour for each store for each day, weekly, monthly, bi-monthly, semestral?
+
+/A: The stores have established daily schedules, so we add 8 am to 9 pm Monday to Saturday and Sunday from 9 am to 8 pm
+
+  * The operation is specified by capacity?, that is to say, they have it established according to the capacity of each store independently to an established schedule?
+
+/A: Yes, the ideal is to take into account the capacity of the store along with the schedule.
+
+2. About the proximity of the stores, I understand that the endpoint returns the closest available store, then:
+    
+    * Is there any range of proximity?, that is to say, that it is possible to establish a radius in which the closest available stores can be established?
+
+/A: More than the proximity range you can take into account the following parameters. In the endpoint you would receive latitude and longitude of the address they are asking. The furthest the customer's address can be is 5km from the store.
+
 
 ## Requirements
 InstaStore is a microservice in charge of selecting the closest "convenience" store to deliver a groceries order to our B2B clients.
