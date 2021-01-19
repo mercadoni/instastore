@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  instastore-db:
+        build:
+          context: .
+          dockerfile: ./conf/docker/mysql.dockerfile
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+          - MYSQL_ROOT_PASSWORD=secret
+          - TZ=America/Bogota
+        volumes:
+          - mysql-source-data:/var/lib/mysql
+        ports: 
+          - "33060:3306"
+  instastore-node:
+      build:
+          context: .
+          dockerfile: ./conf/docker/node.dockerfile
+      ports:
+        - "3000:3000"
+      links:
+        - instastore-db
+
+volumes:
+  mysql-source-data:
