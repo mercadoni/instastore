@@ -77,7 +77,7 @@ If the user denies the geolocation, an input will be shown where the desired add
 
 When the request finish, a Google map will be shown with the position of the user and the closest store, below this map will be shown the store information.
 
-![Screenshot](https://github.com/MonterrosaF/instastore/blob/feature/developFelipe/docs/images/Wireframe%20Page_2.png?raw=true)
+![Screenshot](https://github.com/MonterrosaF/instastore/blob/feature/developFelipe/docs/images/Wireframe%20Page_3.png?raw=true)
 
 The "Hamburger Menu" allows to visualize the two pages created for the exercise.
 
