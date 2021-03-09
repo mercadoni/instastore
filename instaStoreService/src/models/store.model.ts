@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
-interface StoreAttrs {
+export interface StoreAttrs {
     storeId: string;
     storeName: string ;
     isOpen: boolean;

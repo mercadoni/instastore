@@ -1,7 +1,7 @@
 import express from 'express'
 import 'express-async-errors'
 import { json } from 'body-parser'
-import cookieSession from 'cookie-session'
+import fakeData from "./controllers/data-store"
 import { errorHandler,NotFoundError ,currentUser} from '@instastore/common'
 import {storeRouter} from './routes/new'
 import {indexStoreRouter} from './routes/index'
@@ -15,6 +15,7 @@ app.set('trust proxy',true);
 app.use(storeRouter)
 app.use(indexStoreRouter)
 
+fakeData()
 app.all('*', async (req, res) => {
     throw new NotFoundError();
 })

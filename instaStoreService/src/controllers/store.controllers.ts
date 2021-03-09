@@ -1,8 +1,10 @@
 import { Response, Request } from 'express'
 import { BadRequestError, NotAuthorizedError, NotFoundError } from '@instastore/common';
-import {Store} from '../models/store.model'
+import {Store,StoreAttrs} from '../models/store.model'
+import distance from '../helper/distance'
 
 class StoreController {
+
 
 
 
@@ -30,6 +32,25 @@ class StoreController {
         
         res.send(stores)
     }
+
+
+    async getNearStore(req:Request,res:Response){
+
+        const {lat,lng} = req.params;
+        const stores:StoreAttrs[] = await Store.find({})
+        const distances = [];
+        for(let i=0; i<stores.length; i++){
+           distances.push({store:stores[i],distance:distance(lat,lng,stores[i].lat,stores[i].lng)})
+        }
+
+        distances.sort(function (a:any, b:any) {
+            return a.distance - b.distance;
+        });
+
+        
+        res.send(distances)
+    }
+
   /* 
     async showOrder(req:Request, res:Response){
         const order = await Order.findById(req.params.orderId).populate('ticket')
