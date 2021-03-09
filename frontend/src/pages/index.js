@@ -1,9 +1,9 @@
 import React from 'react'
-// import Map from './Map'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getStore } from '../service/getClosestStore.service';
 import Button from 'react-bootstrap/Button';
+import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import PlacesAutoComplete from '../components/PlacesAutoComplete/PlacesAutoComplete'
 import Map from '../components/Map/Map'
@@ -30,6 +30,12 @@ class Home extends React.Component{
             distance: null,
             isShowingAddressInput: true,
             blocking: true,
+            closingDate: null,
+            openingDate: null,
+            email: null,
+            queuedOrders: null,
+            storePhoneNumber: null,
+            storeAddress: null
         }
         this.toggleBlocking = this.toggleBlocking.bind(this);
         this.getLocation = this.getLocation.bind(this);
@@ -78,8 +84,14 @@ class Home extends React.Component{
             storeName: data.data.storeName,
             isOpen: data.data.isOpen,
             nextDeliveryTime: data.data.nextDeliveryTime,
-            distance: Math.round(data.data.distance)
+            distance: Math.round(data.data.distance),
+            storePhoneNumber: data.data.storePhoneNumber,
+            email: data.data.email,
+            openingDate: data.data.openingDate,
+            closingDate: data.data.closingDate,
+            queuedOrders: data.data.queuedOrders,
         })
+        this.getStoreAddress()
         }
     }
 
@@ -89,6 +101,15 @@ class Home extends React.Component{
         .then(data => this.setState({
             userAddress: data.results[0].formatted_address,
             blocking: false
+        }))
+        .catch(error => alert(error))
+    }
+
+    getStoreAddress(){
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.nearestStoreLat},${this.state.nearestStoreLng}&sensor=false&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+        .then(response => response.json())
+        .then(data => this.setState({
+            storeAddress: data.results[2].formatted_address
         }))
         .catch(error => alert(error))
     }
@@ -128,8 +149,9 @@ class Home extends React.Component{
             <div className="App">
             <BlockUi style={{height: '87vh'}} tag="div" blocking={this.state.blocking}>
             <div style={{textAlign:'center',marginTop:'20px'}} >
-                { this.state.userAddress ? <p> <b>·Current address:</b> {this.state.userAddress} </p> : null }
+                { this.state.userAddress ? <h2> <b>·Current address:</b> {this.state.userAddress} </h2> : null }
             </div>
+
             <div style={{textAlign:'center',marginTop:'20px'}} >
                 { this.state.isShowingAddressInput ? <PlacesAutoComplete onSelectPlace={this.handleSelect} style={{textAlign:'center'}}/> : null}
             </div>
@@ -151,10 +173,46 @@ class Home extends React.Component{
 
                     <ToastContainer />
                     <div style={{width: '75%',margin: '0 auto',textAlign: 'initial',border: '1px solid black',borderRadius: '20px',padding: '15px',marginTop: '20px'}}  className={this.state.lat && this.state.lng && this.state.nearestStoreLat && this.state.nearestStoreLng ? '' : 'hidden'}>
-                    { this.state.userAddress ? <p> <b>·Current address:</b> {this.state.userAddress} </p> : null }
-                    <p> <b>·Closest Store name:</b> {this.state.storeName}</p>
-                    <p> <b>·Next Delivery Time:</b> {this.state.nextDeliveryTime}</p>
-                    <p> <b>·Distance of the store from your home:</b> {this.state.distance} m.</p>
+                    <Table striped bordered hover>
+                    <tbody>
+                        <tr>
+                        <td>Store Name</td>
+                        <td>{this.state.storeName}</td>
+                        </tr>
+                        <tr>
+                        <td>Store Address</td>
+                        <td>{this.state.storeAddress}</td>
+                        </tr>
+                        <tr>
+                        <td>Is Open?</td>
+                        <td>{this.state.isOpen ? "Yes" : "No"}</td>
+                        </tr>
+                        <tr>
+                        <td>Next Delivery Time</td>
+                        <td>{this.state.nextDeliveryTime}</td>
+                        </tr>
+                        <tr>
+                        <td>Store Phone Number</td>
+                        <td>{this.state.storePhoneNumber}</td>
+                        </tr>
+                        <tr>
+                        <td>Store Email</td>
+                        <td>{this.state.email}</td>
+                        </tr>
+                        <tr>
+                        <td>Hours of operation</td>
+                        <td>{this.state.openingDate} - {this.state.closingDate}</td>
+                        </tr>
+                        <tr>
+                        <td>Queued Orders</td>
+                        <td>{this.state.queuedOrders}</td>
+                        </tr>
+                        <tr>
+                        <td>Distance</td>
+                        <td>{this.state.distance} m</td>
+                        </tr>
+                    </tbody>
+                    </Table>
                     </div>
                 </div>
                 </BlockUi>
