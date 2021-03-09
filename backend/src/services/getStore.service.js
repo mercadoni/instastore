@@ -1,5 +1,6 @@
 import { locations } from "./../utils/locations";
 import findNearestLocation from "map-nearest-location";
+import moment from 'moment';
 
 export const getStoreProcess = (request) => {
   checkCoordinates(request);
@@ -18,9 +19,24 @@ export const getStoreProcess = (request) => {
   });
 
   store['distance'] = nearestLocation.distance;
+  store['isOpen'] = checkIsOpen(store);
+  store['nextDeliveryTime'] = getNextDeliveryTime(store);
 
   return store;
 };
+
+let checkIsOpen = (request) => {
+  let timeFormat = 'hh:mm'
+  var actualTime = moment()
+  let openingDate = moment(request.openingDate, timeFormat);
+  let closingDate = moment(request.closingDate, timeFormat);
+
+  return actualTime.isBetween(openingDate, closingDate)
+}
+
+let getNextDeliveryTime = (request) =>{
+  
+}
 
 let checkCoordinates = (request) => {
  
