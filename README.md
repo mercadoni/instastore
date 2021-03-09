@@ -49,3 +49,32 @@ InstaStore is a microservice in charge of selecting the closest "convenience" st
 2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
 3. Do you think your service is secure? why?
 4. What would you do to measure the behaviour of your product on a production environment?
+
+
+------------------------------------------------
+
+## Solution section
+
+this application was built on docker using docker-compose to build the images.
+
+## How to start?
+
+please run the following scripts:
+
+docker-compose build
+docker-compose up
+
+## Improvements and trade offs answers
+1. What would you improve from your code? why?
+   - setting a prettier file and configuration rules to the code, because it will help to follow a code standard
+   - apply javascript functional patterns like monad, because it will help to reduce bugs
+2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+   - should be fine if I apply real-time feature in order to make the app more real since we are working with delivering app.
+   - if I had more time I could try to use a cloud database to manage the data.
+3. Do you think your service is secure? why?
+   - is not secure because I'm working with a containerized database, should be fine if I use a cloud database.
+   - I'm not working with authentication, should be fine I set this feature using json web tokens.
+4. What would you do to measure the behaviour of your product on a production environment?
+   - first at all I'd try to measure using google chrome features in order to take a look on network and react rendering behaviour
+   - I'd run the UI building the src to production and use the react-scripts feature and set the script previously.
+   - I'd run the API avoiding to use nodemon feature and set the script previosly.
