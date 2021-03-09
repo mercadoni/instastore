@@ -1,11 +1,10 @@
 import React from 'react'
 import PlacesAutocomplete,{  geocodeByAddress,
-  geocodeByPlaceId,
   getLatLng,} from 'react-places-autocomplete';
 
 export default function App({onSelectPlace}){
     const [address, setAddress] = React.useState("");
-    const [coordinates, setCoordinates] = React.useState({lat: null, lng: null})
+    const [setCoordinates] = React.useState({lat: null, lng: null})
     const handleSelect = async value => {
         const results = await geocodeByAddress(value)
         const latLng = await getLatLng(results[0])
