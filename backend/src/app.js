@@ -3,7 +3,9 @@ import express from 'express';
 import morgan from 'morgan';
 import pkg from '../package.json';
 import getStore from './routes/getStore.routes';
+import winston from 'winston';
 
+const logger = require('./utils/logger')
 const app = express();
 const cors = require('cors')
 

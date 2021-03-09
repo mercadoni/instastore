@@ -3,6 +3,8 @@ import findNearestLocation from "map-nearest-location";
 import moment from "moment";
 require("dotenv").config();
 const fetch = require("node-fetch");
+const logger = require('./../utils/logger')
+
 
 // Funcion principal que se encarga de realizar la logica de la peticion
 
@@ -32,7 +34,7 @@ export const getStoreProcess = async (request) => {
   store["isOpen"] = checkIsOpen(store);
   // Funcion que nos indica la fecha y hora de la proxima entrega
   store["nextDeliveryTime"] = await getNextDeliveryTime(request, store);
-
+  
   return store;
 };
 
@@ -87,6 +89,7 @@ let getNextDeliveryTime = async (userCoords, request) => {
         });
     } catch (error) {
       console.error(error);
+      logger.error(JSON.stringify(error))
       return "It is not possible to ship at this time, please try again later.";
     }
 
@@ -111,6 +114,7 @@ let checkCoordinates = (request) => {
         "Latitude must be between -90 and 90. Longitude must be between -180 and 180. Both must be numeric",
       status: 400,
     };
+    logger.error("Issue with the request: " + JSON.stringify(request))
     throw coordinatesException;
   }
 };
