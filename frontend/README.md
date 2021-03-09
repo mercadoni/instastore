@@ -19,11 +19,11 @@ _The following programs/tools are required to run this project in a local enviro
 _In order to start this project, please follow the steps below:_
 
 1. Clone or download the repository
-2. Inside the folder run the command "npm i" in order to install all node dependencies
-3. Inside the folder run the command "npm start" in order to start the react project
+2. Inside the folder 'frontend' run the command "npm i" in order to install all node dependencies
+3. Inside the folder 'frontend' run the command "npm start" in order to start the react project
 4. The project will be initialized on port 3000.
 
-## Construido con 🛠️
+## Build with 🛠️
 
 * [npm](https://www.npmjs.com) - Dependency handler
 * [React](https://es.reactjs.org/) - Framework used for the frontend
