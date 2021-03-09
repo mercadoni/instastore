@@ -1,0 +1,38 @@
+{
+  "name": "instastore-api-challenge",
+  "version": "1.0.0",
+  "description": "Challenge Fullstack InstaStore in NodeJS/Express",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --out-dir build",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "start": "node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MonterrosaF/instastore/tree/feature/developFelipe"
+  },
+  "author": "Andres Felipe Monterrosa",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "map-nearest-location": "^1.1.3",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "nodemon": "^2.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/MonterrosaF/instastore/tree/feature/developFelipe/issues"
+  },
+  "homepage": "https://github.com/MonterrosaF/instastore/tree/feature/developFelipe#readme"
+}

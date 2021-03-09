@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "bda15697-3d3d-40f8-a3e6-931ac35aa885",
+		"name": "instastore-collection",
+		"description": "Collection of requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get personal info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000",
+					"host": [
+						"localhost"
+					],
+					"port": "4000"
+				},
+				"description": "Get Author Info"
+			},
+			"response": [
+				{
+					"name": "get personal info",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000",
+							"host": [
+								"localhost"
+							],
+							"port": "4000"
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "get closest store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lat\": 4.607575,\n    \"lng\": -74.0752715\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/getStore",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"getStore"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get closest store",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lat\": 4.607575,\n    \"lng\": -74.0752715\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/getStore",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"getStore"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
