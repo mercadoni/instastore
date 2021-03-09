@@ -99,7 +99,7 @@ class Home extends React.Component{
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.lat},${this.state.lng}&sensor=false&key=${process.env.REACT_APP_GOOGLE_KEY}`)
         .then(response => response.json())
         .then(data => this.setState({
-            userAddress: data.results[0].formatted_address,
+            userAddress: data.results[1].formatted_address,
             blocking: false
         }))
         .catch(error => alert(error))
