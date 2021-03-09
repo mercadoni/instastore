@@ -23,6 +23,7 @@ _In order to start this project, please follow the steps below:_
 2. Inside the folder 'backend' run the command "npm i" in order to install all node dependencies
 3. Inside the folder 'backend' run the command "npm run dev" in order to start the react project
 4. The project will be initialized on port 4000 and it is ready to receive requests (If you want to change the port, you can do it in the src/index.js file).
+5. A folder will be created in src/logs, where an audit of the requests made can be performed.
 
 ## Construido con 🛠️
 
