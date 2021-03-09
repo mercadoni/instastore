@@ -85,8 +85,24 @@ The "Hamburger Menu" allows to visualize the two pages created for the exercise.
 
 You will find two folders (frontend and backend), each of them will have its respective README.md with its detailed information.
 
+## Blockers 📋
+
+1. Where do I get the information about the stores?
+2. How to find the delivery time?
+3. Which map API must I to use?
+4. How should I serve the app through CDN?. 
+
+## Answering Improvements and trade offs
+
+1. What would you improve from your code? why?
+_I would study more about implementing maps in react, I feel there are better ways to do it._
+2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+_To deliver on time I organize my ideas and organize the workflow, with the help of the diagrams I can clarify the way in which I have to do it, for next time I would try to organize my time better, in this way I would deliver my pending tasks on time._
+3. Do you think your service is secure? why?
+_It is secure since no sensitive user data is being used, in addition to this the SonarQube tool allows me to identify if there are any security loopholes and correct them. Although for a next version I would try to encrypt the data and that this type of operations can only be performed by an authenticated person and that the requests ask for the token._
+4. What would you do to measure the behaviour of your product on a production environment?
+_I really like the process used with Jest, SonarQube and some DevOps tools like Jenkins, I would try to study more these tools. If it is for backend I would like to know more about Raygun and for frontend performance I usually use Google's PageSpeed tool._
 
 ## Autor ✒️
 
 * [Andrés Felipe Monterrosa](https://www.linkedin.com/in/andres-felipe-monterrosa-alarcon)
-
