@@ -73,11 +73,11 @@ let getNextDeliveryTime = async (userCoords, request) => {
             minutes = "0" + minutes;
           }
           estimatedTimeFormatted = hours.toString() + ":" + minutes.toString(); // Obtenemos el valor estimado en formato hh:mm
-
+          estimatedTimeFormatted = moment(moment(), timeFormat)
+          .add(estimatedTimeFormatted, "minutes").format("hh:mm") // retornamos la hora de el proximo delivery
           if (
             moment()
               .add("60", "minutes")
-              .format("LTS")
               .isSameOrAfter(moment(request.closingDate, timeFormat)) // Calculamos que si la hora actual mas 1 hora nos da un tiempo despues de cerrar la tienda, el pedido se realizara al siguiente dia
           ) {
             let tomorrowDate = moment(request.openingDate, "hh:mm:") // Se declara que a partir de la fecha de apertura mas la hora estimada (ya que los pedidos no se haran el mismo dia) se realizaran al siguiente dia
