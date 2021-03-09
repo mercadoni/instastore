@@ -1,8 +1,10 @@
 import { locations } from "./../utils/locations";
 import findNearestLocation from "map-nearest-location";
 import moment from 'moment';
+require('dotenv').config()
+const fetch = require('node-fetch');
 
-export const getStoreProcess = (request) => {
+export const getStoreProcess = async (request) => {
   checkCoordinates(request);
 
   let coordinates = locations.map((location) => {
@@ -18,9 +20,10 @@ export const getStoreProcess = (request) => {
     );
   });
 
+  store['nextDeliveryTime'] = await getNextDeliveryTime(request,store);
   store['distance'] = nearestLocation.distance;
   store['isOpen'] = checkIsOpen(store);
-  store['nextDeliveryTime'] = getNextDeliveryTime(store);
+
 
   return store;
 };
@@ -34,8 +37,36 @@ let checkIsOpen = (request) => {
   return actualTime.isBetween(openingDate, closingDate)
 }
 
-let getNextDeliveryTime = (request) =>{
-  
+let getNextDeliveryTime = async (userCoords, request) =>{
+  let timeFormat = 'hh:mm'
+  let actualTime = moment().format(timeFormat)
+  let estimatedTime;
+  let estimatedTimeFormatted;
+
+  if (request.isOpen){
+    try {
+       await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?=&origins=${request.coordinates.lat},${request.coordinates.lng}&destinations=${userCoords.lat}%2C${userCoords.lng}&key=${process.env.GOOGLE_KEY}`)
+      .then(res => res.json())
+      .then(json => {
+        let estimatedBikeTime = (json.rows[0].elements[0].duration.value) / 60
+        estimatedTime = (request.queuedOrders*20) + estimatedBikeTime
+        var mins_num = parseFloat(estimatedTime, 10);
+        var hours   = Math.floor(mins_num / 60);
+        var minutes = Math.floor((mins_num - ((hours * 3600)) / 60));
+    
+        if (hours   < 10) {hours   = "0"+hours;}
+        if (minutes < 10) {minutes = "0"+minutes;}
+        estimatedTimeFormatted = hours.toString()+':'+minutes.toString()
+      });
+    } catch (error) {
+      console.error(error)
+      return "It is not possible to ship at this time, please try again later.";
+    }
+
+   return estimatedTimeFormatted
+  }else{
+    return "The store is not open, please try again tomorrow";
+  }
 }
 
 let checkCoordinates = (request) => {

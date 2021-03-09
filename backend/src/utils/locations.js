@@ -11,7 +11,8 @@ export const locations = [
     storePhoneNumber: "1000001",
     email: "antonionarinostore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 2,
@@ -25,7 +26,8 @@ export const locations = [
     storePhoneNumber: "1000002",
     email: "barriosunidosstore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 3,
@@ -39,7 +41,8 @@ export const locations = [
     storePhoneNumber: "1000003",
     email: "bosastore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 4,
@@ -53,7 +56,8 @@ export const locations = [
     storePhoneNumber: "1000004",
     email: "capinerostore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 5,
@@ -67,7 +71,8 @@ export const locations = [
     storePhoneNumber: "1000005",
     email: "ciudadbolivarstore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 6,
@@ -81,7 +86,8 @@ export const locations = [
     storePhoneNumber: "1000006",
     email: "engativastore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
 
   {
@@ -96,7 +102,8 @@ export const locations = [
     storePhoneNumber: "1000007",
     email: "fontibonstore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 8,
@@ -110,7 +117,8 @@ export const locations = [
     storePhoneNumber: "1000008",
     email: "kennedystore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 9,
@@ -125,7 +133,8 @@ export const locations = [
     storePhoneNumber: "1000009",
     email: "lacandelariastore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 8
   },
   {
     storeId: 10,
@@ -140,7 +149,8 @@ export const locations = [
     storePhoneNumber: "1000010",
     email: "losmartiresstore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 11,
@@ -155,7 +165,8 @@ export const locations = [
     storePhoneNumber: "1000011",
     email: "puentearandastore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 12,
@@ -170,7 +181,8 @@ export const locations = [
     storePhoneNumber: "1000012",
     email: "rafaeluribeuribestore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 13,
@@ -184,7 +196,8 @@ export const locations = [
     storePhoneNumber: "1000013",
     email: "sancristobalstore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 14,
@@ -199,7 +212,8 @@ export const locations = [
     storePhoneNumber: "1000014",
     email: "santafestore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 15,
@@ -214,7 +228,8 @@ export const locations = [
     storePhoneNumber: "1000015",
     email: "subastore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 16,
@@ -229,7 +244,8 @@ export const locations = [
     storePhoneNumber: "1000016",
     email: "sumapazstore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 17,
@@ -244,7 +260,8 @@ export const locations = [
     storePhoneNumber: "1000017",
     email: "teusaquillostore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 18,
@@ -259,7 +276,8 @@ export const locations = [
     storePhoneNumber: "1000018",
     email: "tunjuelitostore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 19,
@@ -274,7 +292,8 @@ export const locations = [
     storePhoneNumber: "1000019",
     email: "usaquenstore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
   {
     storeId: 20,
@@ -288,7 +307,8 @@ export const locations = [
     storePhoneNumber: "1000020",
     email: "usmestore@hotmail.com",
     openingDate: '06:00',
-    closingDate: '21:00'
+    closingDate: '21:00',
+    queuedOrders: 0
   },
 ];
 

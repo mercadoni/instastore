@@ -4,7 +4,7 @@ export const closestStore = async (req, res) => {
   let request = req.body;
 
   try {
-    let response = getStoreService.getStoreProcess(request);
+    let response = await getStoreService.getStoreProcess(request);
     res.status(200).json(response);
   } catch (exception) {
     console.log(exception);
