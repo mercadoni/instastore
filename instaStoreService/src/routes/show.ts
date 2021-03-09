@@ -1,10 +1,10 @@
-/*import { requireAuth } from '@js-ecommerceapp/common';
-import express, {Request,Response} from 'express'
-import OrdersController from '../controllers/orders.controllers';
+import { requireAuth } from '@instastore/common';
+import express, { Request, Response } from 'express'
+import StoreController from '../controllers/store.controllers';
 
 const router = express.Router();
-const orderController = new OrdersController()
-router.get('/api/orders/:orderId',requireAuth,orderController.showOrder)
+const storeController = new StoreController();
 
-export {router as showOrderRouter}
-*/
+router.get('/api/stores/:lat/:lng', storeController.getNearStore)
+
+export { router as showStoreRouter }
