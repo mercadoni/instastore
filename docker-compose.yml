@@ -1,0 +1,22 @@
+version: '2'
+services:
+  ui:
+    build: ./ui
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+  api:
+    build: ./api
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mongo
+    environment:
+      - PORT=8080
+      - MONGODB_URL=mongodb://mongo:27017/store
+      - MOCK_STORES=true
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
