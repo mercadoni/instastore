@@ -1,3 +1,5 @@
+// Data dummy inicial
+
 export const locations = [
   {
     storeId: 1,

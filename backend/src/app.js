@@ -1,10 +1,10 @@
+// Importaciones, instancias y configuracion basica
 import express from 'express';
 import morgan from 'morgan';
 import pkg from '../package.json';
 import getStore from './routes/getStore.routes';
 
 const app = express();
-
 const cors = require('cors')
 
 app.use(cors())
@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Peticion para mostrar informacion del autor
 app.get('/', (req, res) => {
   res.json({
     name: app.get('pkg').name,
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
   });
 });
 
+// Declaracion de la ruta de la aplicacion
 app.use('/getStore', getStore);
 
 export default app;
