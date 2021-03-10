@@ -22,9 +22,9 @@ InstaStore is a microservice in charge of selecting the closest. In this microse
 
 There are two three endpoints in the microservice, addStore, getAllStores, getNearStore
 
--Add Store (/api/stores)
- Type: POST
- Payload:
+- Add Store (/api/stores)
+  Type: POST
+  Payload:
  {
      storeId: string,
     storeName: string,
@@ -34,14 +34,19 @@ There are two three endpoints in the microservice, addStore, getAllStores, getNe
     nextDeliveryTime:string
 
  }
- -Get All Store (/api/stores)
- Type: GET
+ - Get All Store (/api/stores)
+   Type: GET
 
- -Get Near Store (/api/stores/:lat/:lng)
- Type: GET
- params: (lat,lng)
+ - Get Near Store (/api/stores/:lat/:lng)
+   Type: GET
+  params: (lat,lng)
 
- ## Improvements and trade offs
+## Wireframe
+
+- Url:
+  https://drive.google.com/file/d/1kJw8Uzn-I_U-kYEKxU5CeB5IJgXGGjpU/view?usp=sharing 
+
+## Improvements and trade offs
 
 What would you improve from your code? why?
 
