@@ -1,16 +1,22 @@
-export default (props) =>{
+const Store= (props) =>{
 
 
     return(
-        <div href="#" className="list-group-item list-group-item-action active" aria-current="true">
+        <div  className="list-group-item list-group-item-action" aria-current="true">
         <div className="d-flex w-100 justify-content-between">
-          <h5 className="mb-1">List group item heading</h5>
-          <small>3 days ago</small>
+          <h5 className="mb-1">{props.storeName}</h5>
+          <small>{props.nextDeliveryTime}</small>
         </div>
         <p className="mb-1">Some placeholder content in a paragraph.</p>
-        <small>And some small print.</small>
+        <small>
+        <div className="form-check form-switch" >
+        <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={props.isOpen} readOnly/>
+        <label className="form-check-label" for="flexSwitchCheckDefault">{props.isOpen ? "Open" : "Closed"}</label>
+      </div>
+      </small>
       </div>
     )
 
 
 }
+export default Store

@@ -5,6 +5,6 @@ import StoreController from '../controllers/store.controllers';
 const router = express.Router();
 const storeController = new StoreController();
 
-router.get('/api/stores/:lat/:lng', storeController.getNearStore)
+router.get('/api/stores', storeController.getStores)
 
 export { router as indexStoreRouter }

@@ -1,14 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import Nav from './components/Nav';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import StoresList from './pages/StoresList';
-import NearestRestaurant from './pages/NearestRestaurant';
+import ClosetsStore from './pages/ClosetsStore';
 function App() {
   return (
     <Router>
@@ -18,12 +16,9 @@ function App() {
       {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
       <Switch>
-        <Route path="/restaurants">
-          <StoresList />
-        </Route>
-        <Route path="/nearest">
-          <NearestRestaurant />
-        </Route>
+        <Route path="/" exact component={StoresList} />
+        <Route path="/closets" exact component={ClosetsStore}/>
+          
       </Switch>
     </div>
   </Router>
